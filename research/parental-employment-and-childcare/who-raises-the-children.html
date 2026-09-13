@@ -1,0 +1,1434 @@
+<title>Who Raises the Children</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root {
+  color-scheme: light;
+  --ground: #f3f5f6;
+  --surface: #fbfcfc;
+  --surface-2: #eaeef0;
+  --ink: #121a20;
+  --ink-2: #4a5862;
+  --ink-3: #76848d;
+  --rule: #d6dde1;
+  --rule-strong: #b9c4ca;
+  --accent: #14527e;
+  --accent-soft: #e3edf4;
+  --signal: #a8591a;
+  --signal-soft: #f7ecdf;
+
+  --series-1: #1e6fa8;
+  --series-2: #d1731a;
+  --ramp-4: #0e4064;
+  --ramp-3: #2b6e9f;
+  --ramp-2: #79a9cc;
+  --ramp-1: #c4d9e8;
+
+  --conf-high: #14527e;
+  --conf-mod: #6b7c86;
+  --conf-low: #a8591a;
+
+  --measure: 68ch;
+  --band: 1080px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #101618;
+    --surface: #182024;
+    --surface-2: #1f292e;
+    --ink: #edf1f3;
+    --ink-2: #a9b6bd;
+    --ink-3: #7c8b93;
+    --rule: #2a353b;
+    --rule-strong: #3b4950;
+    --accent: #6aaadd;
+    --accent-soft: #16303f;
+    --signal: #e0913a;
+    --signal-soft: #2e2317;
+
+    --series-1: #3585be;
+    --series-2: #cb7a18;
+    --ramp-4: #c6dcec;
+    --ramp-3: #8cb8d8;
+    --ramp-2: #548cbc;
+    --ramp-1: #35688f;
+
+    --conf-high: #6aaadd;
+    --conf-mod: #93a2aa;
+    --conf-low: #e0913a;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #101618;
+  --surface: #182024;
+  --surface-2: #1f292e;
+  --ink: #edf1f3;
+  --ink-2: #a9b6bd;
+  --ink-3: #7c8b93;
+  --rule: #2a353b;
+  --rule-strong: #3b4950;
+  --accent: #6aaadd;
+  --accent-soft: #16303f;
+  --signal: #e0913a;
+  --signal-soft: #2e2317;
+
+  --series-1: #3585be;
+  --series-2: #cb7a18;
+  --ramp-4: #c6dcec;
+  --ramp-3: #8cb8d8;
+  --ramp-2: #548cbc;
+  --ramp-1: #35688f;
+
+  --conf-high: #6aaadd;
+  --conf-mod: #93a2aa;
+  --conf-low: #e0913a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Public Sans", system-ui, -apple-system, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--band);
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 0;
+}
+
+.col {
+  max-width: var(--measure);
+}
+
+h1, h2, h3, h4 {
+  font-family: Newsreader, Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  text-wrap: balance;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+p { margin: 0; }
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+}
+.masthead .wrap {
+  padding-block: 52px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+h1 {
+  font-size: clamp(2.5rem, 6.2vw, 4rem);
+  line-height: 1.03;
+  max-width: 16ch;
+}
+.standfirst {
+  font-size: 1.12rem;
+  color: var(--ink-2);
+  max-width: 58ch;
+}
+.byline {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- question nav ---------- */
+
+.qnav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.qnav .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 26px;
+  padding-block: 11px;
+}
+.qnav a {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-block: 2px;
+}
+.qnav a:hover, .qnav a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+.qnav a span { color: var(--ink-3); }
+
+/* ---------- sections ---------- */
+
+section { padding-block: 60px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: none; }
+
+.qhead {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+.qlabel {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.qhead h2 {
+  font-size: clamp(1.75rem, 3.6vw, 2.4rem);
+  line-height: 1.14;
+  max-width: 22ch;
+}
+.qhead .ask {
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  font-size: 1.06rem;
+  color: var(--ink-2);
+  max-width: 56ch;
+}
+
+h3 {
+  font-size: 1.32rem;
+  margin-top: 44px;
+  margin-bottom: 10px;
+}
+h4 {
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+}
+
+.col p + p { margin-top: 14px; }
+.col > * + h3 { margin-top: 46px; }
+
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ---------- provenance line: the recurring device ---------- */
+
+.prov {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+.prov .sep { color: var(--rule-strong); }
+.conf {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.conf::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 4px;
+  border-radius: 1px;
+  background: linear-gradient(to right, currentColor 33%, var(--rule-strong) 33%);
+}
+.conf.high { color: var(--conf-high); }
+.conf.high::before { background: linear-gradient(to right, currentColor 100%, var(--rule-strong) 0); }
+.conf.mod { color: var(--conf-mod); }
+.conf.mod::before { background: linear-gradient(to right, currentColor 66%, var(--rule-strong) 66%); }
+.conf.low { color: var(--conf-low); }
+
+/* ---------- callout ---------- */
+
+.note {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.note.warn { border-left-color: var(--signal); }
+.note h4 { margin-bottom: 0; color: var(--ink); }
+
+/* ---------- figures ---------- */
+
+figure {
+  margin: 32px 0 0;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 24px;
+}
+figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+figcaption .ftitle {
+  font-family: Newsreader, Georgia, serif;
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-wrap: balance;
+}
+figcaption .fsub {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+}
+.chartscroll { overflow-x: auto; overflow-y: hidden; }
+.chart { width: 100%; min-width: 520px; height: auto; display: block; }
+.chart text { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.scrollhint {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--ink-3);
+  margin-top: 8px;
+  display: none;
+}
+@media (max-width: 600px) { .scrollhint { display: block; } }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 16px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.legend .key { display: inline-flex; align-items: center; gap: 7px; }
+.legend .swatch { width: 13px; height: 13px; border-radius: 2px; flex: none; }
+.legend .dot-hollow {
+  width: 11px; height: 11px; border-radius: 50%;
+  border: 2px solid var(--ink-3); background: var(--surface); flex: none;
+}
+.legend .dot-solid { width: 11px; height: 11px; border-radius: 50%; background: var(--ink-3); flex: none; }
+
+/* ---------- stat tiles ---------- */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 28px;
+}
+.tile {
+  background: var(--surface);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.tile .tnum {
+  font-family: Newsreader, Georgia, serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+.tile.alt .tnum { color: var(--signal); }
+.tile .tlabel { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+.tile .tdenom {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- definition ladder ---------- */
+
+.ladder { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; }
+.rung {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+.rung[data-tier="1"] { border-left: 3px solid var(--ramp-2); }
+.rung[data-tier="2"] { border-left: 3px solid var(--ramp-4); margin-left: 0; }
+.rung[data-tier="3"] { border-left: 3px solid var(--series-2); margin-top: 14px; }
+.rung .rname {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.rung .rdef { font-size: 0.97rem; color: var(--ink); }
+.rung .rval { font-family: Newsreader, Georgia, serif; font-size: 1.5rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.rung[data-tier="3"] .rval { color: var(--signal); }
+.nest-mark {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  padding-left: 14px;
+}
+
+/* ---------- tables ---------- */
+
+.tablewrap {
+  overflow-x: auto;
+  margin-top: 26px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 460px; }
+caption {
+  text-align: left;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 1.06rem;
+  padding: 18px 20px 12px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+th, td { text-align: left; padding: 10px 20px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: none; }
+td.v, th.v { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.88rem; }
+td.v b { font-weight: 600; color: var(--accent); }
+tbody tr:hover { background: var(--surface-2); }
+
+/* ---------- system diagram ---------- */
+
+.flowgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 26px;
+}
+.flowcell { background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.flowcell .fname {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-3);
+}
+.flowstep { display: flex; flex-direction: column; gap: 3px; }
+.flowstep .slab { font-size: 0.74rem; color: var(--ink-3); font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.flowstep .sval { font-size: 0.93rem; color: var(--ink); }
+.flowarrow { color: var(--ink-3); font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; }
+
+/* ---------- gaps list ---------- */
+
+ol.gaps, ul.plain { margin: 18px 0 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 11px; }
+ol.gaps li::marker { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.85em; color: var(--ink-3); }
+
+/* ---------- sources ---------- */
+
+.sources { columns: 2; column-gap: 40px; margin-top: 20px; }
+.sources > div { break-inside: avoid; margin-bottom: 22px; }
+.sources h4 { margin-bottom: 8px; }
+.sources ul { margin: 0; padding-left: 1.1em; font-size: 0.88rem; line-height: 1.5; }
+.sources li { margin-bottom: 7px; }
+
+/* ---------- tooltip ---------- */
+
+#tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 90;
+  background: var(--ink);
+  color: var(--ground);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  line-height: 1.45;
+  padding: 7px 10px;
+  border-radius: 3px;
+  max-width: 260px;
+  opacity: 0;
+  transition: opacity .1s ease;
+}
+#tip.on { opacity: 1; }
+
+.hit { cursor: crosshair; }
+
+footer {
+  border-top: 1px solid var(--rule);
+  background: var(--surface);
+}
+footer .wrap { padding-block: 30px 44px; }
+footer p {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  max-width: 80ch;
+  line-height: 1.6;
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .sources { columns: 1; }
+  section { padding-block: 44px; }
+  figure { padding: 18px 14px; }
+  th, td, caption { padding-inline: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Statistical review · September 2026</div>
+    <h1>Who Raises the Children</h1>
+    <p class="standfirst">Parental employment, grandparent caregiving, and parent–child contact worldwide — three questions that sound like they should have three numbers, and the honest state of the evidence for each.</p>
+    <div class="byline">
+      <span>171 indicators</span>
+      <span class="sep">·</span>
+      <span>OECD · Eurostat · ILO · DHS/MICS · UN DESA · ATUS · SHARE · national censuses</span>
+      <span class="sep">·</span>
+      <span>every figure carries its survey, year and confidence grade</span>
+    </div>
+  </div>
+</header>
+
+<nav class="qnav" aria-label="Sections">
+  <div class="wrap">
+    <a href="#method"><span>00</span> Method</a>
+    <a href="#q1"><span>Q1</span> Who works</a>
+    <a href="#q2"><span>Q2</span> Grandparents</a>
+    <a href="#q3"><span>Q3</span> Connection</a>
+    <a href="#synthesis"><span>04</span> Synthesis</a>
+    <a href="#gaps"><span>05</span> Gaps</a>
+    <a href="#sources"><span>06</span> Sources</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="method">
+  <div class="wrap">
+    <div class="col">
+      <div class="note warn">
+        <h4>Read this first — there is no single worldwide dataset</h4>
+        <p>No statistical agency produces a global figure for how many parents per household are working. The three questions below are answered by stitching together sources with different coverage, different definitions, and different reference years. That seam is the most important thing on this page, so it is shown rather than smoothed over.</p>
+      </div>
+
+      <h3>Why the seam exists</h3>
+      <p>Three structural problems compound each other.</p>
+      <p><strong>"Working" is defined differently everywhere.</strong> In sub-Saharan Africa and South Asia most maternal work is informal, seasonal, home-based or subsistence agriculture. Around <span class="num">95%</span> of employed women in South Asia and <span class="num">89%</span> in sub-Saharan Africa work informally, and official statistics systematically undercount unpaid work in the field and household. A rural mother farming with an infant on her back is "not employed" in some datasets and "employed" in others.</p>
+      <p><strong>"Raised by grandparents" collapses three different things</strong> — co-residence, primary caregiving, and daytime childcare. Question 2 separates them, because the numbers differ by an order of magnitude.</p>
+      <p><strong>"How parents connect" is partly a measurement problem.</strong> Time-use diaries capture minutes well and warmth badly.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>What each source can and cannot tell you</caption>
+        <thead>
+          <tr><th scope="col">Source</th><th scope="col">Coverage</th><th scope="col">Can answer</th><th scope="col">Cannot answer</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OECD Family Database</td><td>~38 rich countries, ~18% of world population</td><td>Household work patterns in fine detail</td><td>Anything about the other 82%</td></tr>
+          <tr><td>Eurostat EU-LFS / EU-SILC</td><td>27 EU states</td><td>The same, harmonised and annual</td><td>Non-EU</td></tr>
+          <tr><td>ILO modelled estimates</td><td>~190 countries</td><td>Labour force participation by sex</td><td>Household composition — it counts individuals, not parents in households</td></tr>
+          <tr><td>DHS / MICS</td><td>~90 low- and middle-income countries</td><td>Children's living arrangements, caregiver stimulation</td><td>Parental employment in a comparable way</td></tr>
+          <tr><td>National censuses via UN DESA</td><td>200 countries, 1,129 sources</td><td>Household structure incl. skip-generation</td><td>Employment; reference dates span 1959–2025</td></tr>
+          <tr><td>Time-use surveys (MTUS / ATUS)</td><td>~30–40 countries, irregular</td><td>Minutes per day parents spend on childcare</td><td>Most of Africa, South and Southeast Asia</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="q1">
+  <div class="wrap">
+    <div class="qhead">
+      <div class="qlabel">Question 1</div>
+      <h2>How many parents per household are working</h2>
+      <p class="ask">The dual-earner household is the rich-country norm but not a supermajority — and in most of the world the question inverts entirely.</p>
+    </div>
+
+    <div class="col">
+      <p>Start with the place the data is genuinely good. Across the OECD, most children in couple households now live with two working parents, but the distribution is wider than the phrase "both parents work" suggests.</p>
+    </div>
+
+    <figure>
+      <figcaption>
+        <span class="ftitle">Children in couple households, by parental work pattern</span>
+        <span class="fsub">OECD average, children aged 0–14. Segments ordered by employment intensity.</span>
+      </figcaption>
+      <div class="chartscroll"><svg class="chart" viewBox="0 0 720 128" role="img" aria-label="Stacked bar: 47 percent of children in OECD couple households have two full-time working parents, 16 percent one-and-a-half earner, 32 percent other patterns, 5 percent jobless.">
+        <g>
+          <rect class="hit" x="0" y="18" width="336" height="46" fill="var(--ramp-4)" data-tip="Both parents full-time — 47%&#10;OECD average, children 0–14"></rect>
+          <rect class="hit" x="340" y="18" width="111" height="46" fill="var(--ramp-3)" data-tip="One full-time, one part-time — 16%&#10;'One-and-a-half earner' households"></rect>
+          <rect class="hit" x="455" y="18" width="226" height="46" fill="var(--ramp-2)" data-tip="One earner and other patterns — 32%"></rect>
+          <rect class="hit" x="685" y="18" width="35" height="46" fill="var(--ramp-1)" data-tip="Jobless couple household — 5%&#10;Neither parent working"></rect>
+        </g>
+        <text x="14" y="47" fill="var(--surface)" font-size="16" font-weight="600">47%</text>
+        <text x="354" y="47" fill="var(--surface)" font-size="16" font-weight="600">16%</text>
+        <text x="469" y="47" fill="var(--ink)" font-size="16" font-weight="600">32%</text>
+        <text x="702" y="84" fill="var(--ink-2)" font-size="12" text-anchor="middle">5%</text>
+        <line x1="702" y1="68" x2="702" y2="74" stroke="var(--rule-strong)" stroke-width="1"></line>
+        <text x="0" y="106" fill="var(--ink-3)" font-size="11">Higher employment intensity</text>
+        <text x="720" y="106" fill="var(--ink-3)" font-size="11" text-anchor="end">Lower</text>
+      </svg></div>
+      <p class="scrollhint">scroll the chart sideways to see it in full &rarr;</p>
+      <div class="legend">
+        <span class="key"><span class="swatch" style="background:var(--ramp-4)"></span> Both full-time · 47%</span>
+        <span class="key"><span class="swatch" style="background:var(--ramp-3)"></span> One-and-a-half earner · 16%</span>
+        <span class="key"><span class="swatch" style="background:var(--ramp-2)"></span> One earner / other · 32%</span>
+        <span class="key"><span class="swatch" style="background:var(--ramp-1)"></span> Jobless · 5%</span>
+      </div>
+      <div class="prov">
+        <span>OECD Family Database</span><span class="sep">·</span>
+        <span>LMF2.2 / LMF1.1</span><span class="sep">·</span>
+        <span>EU-LFS &amp; national LFS</span><span class="sep">·</span>
+        <span>2022</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+    </figure>
+
+    <div class="col">
+      <p>Full-time dual-earner shares exceed <strong>two-thirds</strong> of children in Denmark, Portugal, Slovenia and Sweden. The pattern is strongly conditioned on child age — in Finland only <span class="num">35%</span> of couples with children are full-time dual-earner when the youngest is 0–2, rising to <span class="num">56%</span> once the youngest is 6.</p>
+      <p>Hours stay asymmetric even among dual earners: <span class="num">~23%</span> of employed fathers in couples work more than 45 hours a week, against <span class="num">~10%</span> of mothers.</p>
+
+      <h3>The United States crossed 50% only recently</h3>
+      <p>This is the single most commonly overstated statistic in the field. "Both parents work" is often quoted as 70–80%, which holds only if part-time and marginal employment count as working.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Two-full-time-earner couples with children under 18, United States</caption>
+        <thead><tr><th scope="col">Year</th><th scope="col" class="v">Both parents full-time</th><th scope="col" class="v">Breadwinner father / homemaker mother</th></tr></thead>
+        <tbody>
+          <tr><td>1970 / 1975</td><td class="v">31%</td><td class="v">46%</td></tr>
+          <tr><td>2015</td><td class="v">46%</td><td class="v">—</td></tr>
+          <tr><td>2025</td><td class="v"><b>52%</b></td><td class="v">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>Pew Research Center</span><span class="sep">·</span>
+        <span>Current Population Survey</span><span class="sep">·</span>
+        <span>1970–2025</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3>The European Union, all adults in the household</h3>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <caption>Households with dependent children, EU-27</caption>
+        <thead><tr><th scope="col">Indicator</th><th scope="col" class="v">Share</th><th scope="col" class="v">Year</th></tr></thead>
+        <tbody>
+          <tr><td>All adults employed</td><td class="v"><b>61.3%</b></td><td class="v">2025</td></tr>
+          <tr><td>All adults working full-time</td><td class="v">41.5%</td><td class="v">2025</td></tr>
+          <tr><td>At least one part-time, others full-time</td><td class="v">16.5%</td><td class="v">2025</td></tr>
+          <tr><td>At least one adult not working, at least one working</td><td class="v">28.3%</td><td class="v">2025</td></tr>
+          <tr><td>No adults working</td><td class="v">13.8%</td><td class="v">2025</td></tr>
+          <tr><td>Households with children that are couples with children</td><td class="v">63.5%</td><td class="v">2024</td></tr>
+          <tr><td>Households with children that are single-parent</td><td class="v">12.7%</td><td class="v">2024</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>Eurostat</span><span class="sep">·</span><span>EU-LFS</span><span class="sep">·</span>
+        <span>2024–2025</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+      <p style="margin-top:16px">Note the divergence between the EU's <span class="num">13.8%</span> "no adults working" and the OECD's <span class="num">~5%</span> jobless <em>couple</em> households. The EU figure pools single-parent households, which carry most of the joblessness.</p>
+
+      <h3>Single parents carry the employment deficit</h3>
+    </div>
+
+    <div class="tiles">
+      <div class="tile alt">
+        <div class="tnum">30%</div>
+        <div class="tlabel">of children in single-parent households live in jobless households</div>
+        <div class="tdenom">OECD average · LMF1.1 · 2022</div>
+      </div>
+      <div class="tile alt">
+        <div class="tnum">63%</div>
+        <div class="tlabel">the same figure in Türkiye; 41–42% in Ireland and Luxembourg</div>
+        <div class="tdenom">OECD Family Database · 2022</div>
+      </div>
+      <div class="tile alt">
+        <div class="tnum">65.8%</div>
+        <div class="tlabel">of people in jobless households with children are in relative income poverty — against 8.3% in working households</div>
+        <div class="tdenom">OECD average · 2022</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <p style="margin-top:24px">In every OECD country except Türkiye most single parents are in paid employment, and where they work they mostly work full-time — above <span class="num">70%</span> of employed single parents work full-time hours in Denmark, Estonia, Hungary, Lithuania, Portugal, Slovakia, Slovenia and Sweden. But more than <span class="num">30%</span> of single parents have no paid work at all in Belgium, France, Greece, Ireland, Italy, New Zealand, Poland, Spain and the UK.</p>
+      <p>Prevalence differs sharply too: <strong><span class="num">23%</span> of American children live with one parent and no other adults — more than three times the global average of <span class="num">7%</span></strong>. China is 3%, India 5%, Canada 15%, the UK 21%; Mali and Afghanistan are 1%.</p>
+
+      <h3>Mothers specifically</h3>
+      <p>The OECD average maternal employment rate for mothers whose youngest child is under 3 is <span class="num">~60%</span>. Among recent mothers (youngest 0–2), <span class="num">64%</span> are employed — but only <span class="num">45%</span> are employed <em>and not absent on leave</em>. That gap is routinely missed: in generous-leave countries a large share of "employed" mothers of infants are formally employed but away.</p>
+      <div class="prov">
+        <span>OECD</span><span class="sep">·</span><span>LMF1.2 · Education at a Glance 2023</span><span class="sep">·</span>
+        <span>2022–2023</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+
+      <h3>The global frame — and why it inverts</h3>
+      <p>The ILO's modelled estimates are the only near-universal series, and they count people, not parents. Global female labour force participation was <span class="num">48.8%</span> in 2025, down from <span class="num">50.7%</span> in 2005; the gender gap narrowed from 26.4 to <span class="num">24.1</span> percentage points; women are <span class="num">40.2%</span> of the global labour force.</p>
+      <p>The motherhood penalty — the reduction in women's participation associated with young children — runs counter-intuitively by income level.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Motherhood employment penalty ratio, by country income group</caption>
+        <thead><tr><th scope="col">Income group</th><th scope="col" class="v">Penalty ratio</th></tr></thead>
+        <tbody>
+          <tr><td>Upper-middle-income</td><td class="v"><b>19.8%</b></td></tr>
+          <tr><td>High-income</td><td class="v">13.2%</td></tr>
+          <tr><td>Low-income</td><td class="v">5.4%</td></tr>
+          <tr><td>Lower-middle-income</td><td class="v">4.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>ILO</span><span class="sep">·</span><span>gender gaps brief</span><span class="sep">·</span>
+        <span>2024</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+
+      <p style="margin-top:16px">The low penalty in poor countries is not a sign of gender equality. It reflects that withdrawing from work is not an option: mothers there work out of necessity, in subsistence agriculture or home-based production, with children present. Fathers everywhere show the opposite pattern — a <em>paternity premium</em> of higher participation after a child arrives.</p>
+
+      <div class="note" style="margin-top:28px">
+        <h4>The accurate global statement is not a percentage</h4>
+        <p>Two distinct regimes exist. A rich-country regime where the dual-earner household is the plurality-to-majority arrangement and joblessness concentrates in single-parent households. And a low-income regime where nearly all parents work, informally and without maternity protection — <span class="num">over 60%</span> of working women globally are informal workers — with children in proximity rather than in substitute care. In DHS analyses of agricultural households, <strong>both parents were employed in agriculture in <span class="num">40%</span> of families</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="q2">
+  <div class="wrap">
+    <div class="qhead">
+      <div class="qlabel">Question 2</div>
+      <h2>What share of children are raised by grandparents</h2>
+      <p class="ask">The honest answer depends entirely on which of three definitions you mean — and published claims switch between them silently.</p>
+    </div>
+
+    <div class="col">
+      <p>Most confusion in this area comes from one source: three quite different populations all get called "raised by grandparents." Separating them is the whole job.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="rung" data-tier="1">
+        <div class="rname">Level 1 — Co-residence</div>
+        <div class="rdef">Child lives in a household that includes a grandparent. Parents are usually present too.</div>
+        <div class="rval">38% of children globally live with relatives beyond the nuclear family</div>
+      </div>
+      <div class="nest-mark">↳ narrower — a subset of Level 1</div>
+      <div class="rung" data-tier="2">
+        <div class="rname">Level 2 — Skip-generation</div>
+        <div class="rdef">Child lives with grandparent(s) and <strong>neither parent</strong>. This is "raised by grandparents" in the strict sense, and what people usually mean.</div>
+        <div class="rval">2.4% of children under 15 in DHS countries</div>
+      </div>
+      <div class="rung" data-tier="3">
+        <div class="rname">Level 3 — Childcare provision · a different axis, not a subset</div>
+        <div class="rdef">Grandparent provides regular daytime care while parents work. The child may live anywhere. This is by far the largest population.</div>
+        <div class="rval">40–78% of grandparents in surveyed countries</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="prov">
+        <span>Pew (130 countries)</span><span class="sep">·</span>
+        <span>DHS cross-country average</span><span class="sep">·</span>
+        <span>SHARE · national surveys</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+
+      <h3>Level 2 in detail — the strict answer</h3>
+      <p>Across Demographic and Health Surveys in low- and middle-income countries, the cross-country average share of children under 15 living in a skip-generation household rose from <span class="num">1.7%</span> to <span class="num">2.4%</span> between the earliest and most recent survey rounds. The share of adults 60+ in such households rose from <span class="num">5.4%</span> to <span class="num">6.7%</span>.</p>
+      <p>That average conceals extreme regional concentration.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Skip-generation households — where they concentrate</caption>
+        <thead><tr><th scope="col">Region / country</th><th scope="col" class="v">Measure</th><th scope="col">Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Lesotho, Malawi, Rwanda, Uganda, Zambia</td><td class="v"><b>&gt;30%</b></td><td>of persons 60+ in skip-generation households</td></tr>
+          <tr><td>Cambodia, Philippines</td><td class="v">&gt;10%</td><td>of persons 60+</td></tr>
+          <tr><td>South Africa</td><td class="v">4.2%</td><td>of all households, 2023</td></tr>
+          <tr><td>United States</td><td class="v">2.1m</td><td>grandparents responsible for a grandchild's basic care, 2021</td></tr>
+          <tr><td>United States</td><td class="v">32.7%</td><td>of co-resident grandparents are responsible for care</td></tr>
+          <tr><td>Asia generally</td><td class="v">low</td><td>outside the migration corridors</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>UN DESA (93 countries)</span><span class="sep">·</span><span>Stats SA GHS</span><span class="sep">·</span>
+        <span>US Census ACS</span><span class="sep">·</span><span>2019–2023</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+
+      <p style="margin-top:16px">The African cluster maps directly onto historical AIDS mortality; the Asian exceptions map onto labour migration. In the US the trend matters as much as the level: responsible grandparents aged 60+ rose from <span class="num">47%</span> in 2012 to <span class="num">59.5%</span> in 2021, and they are responsible for longer — an older, harder caregiving burden than the same headcount a decade ago.</p>
+
+      <h3>The wider frame — children with neither parent</h3>
+      <p>Skip-generation is a subset of a larger category. Where children are not with a parent, grandparents are the modal destination but not the only one.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Children living with neither biological parent</caption>
+        <thead><tr><th scope="col">Population</th><th scope="col" class="v">Share</th><th scope="col">Note</th></tr></thead>
+        <tbody>
+          <tr><td>40 sub-Saharan African countries, under-15s</td><td class="v"><b>11.9%</b></td><td>of which 8.6 pp had <em>both parents alive</em>; only 0.9% were double orphans</td></tr>
+          <tr><td>Range across sub-Saharan Africa</td><td class="v">8–30%</td><td>Mali lowest, Eswatini highest</td></tr>
+          <tr><td>South Africa, 2024</td><td class="v">18.8%</td><td>19.5% in 2022; only 36% of children aged 0–4 live with both parents</td></tr>
+          <tr><td>Uganda, 2011</td><td class="v">17%</td><td>of children 0–14 — of whom <strong>97%</strong> were in informal kinship care</td></tr>
+          <tr><td>Lao PDR</td><td class="v">7.5%</td><td>of children 0–17</td></tr>
+          <tr><td>Regions where fostering is institutionalised</td><td class="v">15–25%</td><td>of under-15s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>DHS</span><span class="sep">·</span><span>Stats SA General Household Survey</span><span class="sep">·</span>
+        <span>UNICEF</span><span class="sep">·</span><span>1997–2024</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+
+      <div class="note" style="margin-top:28px">
+        <h4>Most children not living with their parents are not orphans</h4>
+        <p>In the sub-Saharan sample, roughly three-quarters of children living with neither parent had both parents alive. Child fostering is a deliberate kinship strategy — for schooling access, labour, or household economics — not primarily a response to death.</p>
+      </div>
+
+      <h3>The migration channel</h3>
+      <p>This is where grandparent-raising becomes a mass phenomenon, and where the numbers become least reliable.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Children left behind by migrating parents</caption>
+        <thead><tr><th scope="col">Context</th><th scope="col" class="v">Figure</th><th scope="col">Definition sensitivity</th></tr></thead>
+        <tbody>
+          <tr><td>Global</td><td class="v">"hundreds of millions"</td><td>No agency produces this estimate</td></tr>
+          <tr><td>China — 2020 census, rural left-behind</td><td class="v"><b>41.8m</b></td><td>Competing figures span 12m to 68.8m by definition</td></tr>
+          <tr><td>China — narrow official definition, 2021</td><td class="v">12.0m</td><td>Residence registration vs actual absence</td></tr>
+          <tr><td>China — care when <em>both</em> parents migrate</td><td class="v">96%</td><td>cared for by grandparents</td></tr>
+          <tr><td>Cambodia</td><td class="v">~80%</td><td>of left-behind children live with grandparents</td></tr>
+          <tr><td>Philippines</td><td class="v">9m</td><td>children with at least one migrant parent; 27% left behind</td></tr>
+          <tr><td>Ecuador · rural South Africa</td><td class="v">36% · &gt;40%</td><td>of children left behind</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>China national census</span><span class="sep">·</span><span>academic literature</span><span class="sep">·</span>
+        <span>2018–2021</span><span class="sep">·</span>
+        <span class="conf low">confidence: low</span><span class="sep">·</span>
+        <span>cite the definition, not just the number</span>
+      </div>
+
+      <h3>Level 3 — the largest population</h3>
+      <p>Grandparents as the childcare arrangement is the most relevant figure for working parents, and the one that produces the counter-intuitive finding on this page.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Grandparents providing childcare, by country</caption>
+        <thead><tr><th scope="col">Country / region</th><th scope="col" class="v">Share</th><th scope="col">Indicator</th></tr></thead>
+        <tbody>
+          <tr><td>Europe (SHARE)</td><td class="v"><b>&gt;40%</b></td><td>of grandparents provide regular childcare support</td></tr>
+          <tr><td>Denmark, Sweden, Netherlands, France</td><td class="v">~60%</td><td>provide any childcare — the high end</td></tr>
+          <tr><td>Southern Europe</td><td class="v">&lt;50%</td><td>provide any childcare — but far more intensively</td></tr>
+          <tr><td>Europe, 11 countries</td><td class="v">58%</td><td>of grandmothers cared for a grandchild under 15 in the parents' absence in the past year</td></tr>
+          <tr><td>United Kingdom</td><td class="v">63%</td><td>of grandparents cared for a grandchild under 16 in the past 12 months</td></tr>
+          <tr><td>United States</td><td class="v">42%</td><td>of working parents rely on grandmothers</td></tr>
+          <tr><td>China, urban</td><td class="v"><b>77.7%</b></td><td>of families where grandparents care for children under 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>SHARE waves 1/2/8</span><span class="sep">·</span><span>Harris Poll</span><span class="sep">·</span>
+        <span>China National Health Commission</span><span class="sep">·</span><span>2014–2023</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+
+      <div class="note" style="margin-top:28px">
+        <h4>Prevalence and intensity move in opposite directions</h4>
+        <p>Grandparental care is <em>more</em> common where public childcare is strong — the Nordics — but much <em>less</em> intensive there: occasional and supplementary rather than daily and load-bearing. Southern Europe has fewer grandparents involved, but those who are, are doing full-time substitution work. China is the global outlier, where grandparental care functions as the country's de facto infant-care system.</p>
+      </div>
+
+      <h3>Why: the under-3 gap</h3>
+      <p>Across the OECD in 2023 only <span class="num">29%</span> of children under 3 were enrolled in formal early childhood education and care — <span class="num">21%</span> of under-2s, rising to <span class="num">52%</span> of two-year-olds, <span class="num">79%</span> of three-year-olds and <span class="num">90%</span> of four-year-olds. The under-3 gap is the space grandparents fill.</p>
+      <div class="prov">
+        <span>OECD</span><span class="sep">·</span><span>Education at a Glance 2025</span><span class="sep">·</span>
+        <span>2023</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="q3">
+  <div class="wrap">
+    <div class="qhead">
+      <div class="qlabel">Question 3</div>
+      <h2>How parents actually connect with their children</h2>
+      <p class="ask">Parents spend more time with their children than their own parents did — despite far higher maternal employment. What changed is what that time contains, and what interrupts it.</p>
+    </div>
+
+    <div class="col">
+      <p>The central finding in this literature reverses the common assumption. Across the entire period in which maternal employment rose, parental time with children rose too.</p>
+    </div>
+
+    <figure>
+      <figcaption>
+        <span class="ftitle">Childcare time per day, 1965 to 2012</span>
+        <span class="fsub">11 Western countries · 122,271 parents (68,532 mothers, 53,739 fathers) · Dotti Sani &amp; Treas, <em>Journal of Marriage and Family</em></span>
+      </figcaption>
+      <div class="chartscroll"><svg class="chart" viewBox="0 0 720 210" role="img" aria-label="Dumbbell chart: mothers' childcare time rose from 54 to 104 minutes a day between 1965 and 2012; fathers' rose from 16 to 59 minutes.">
+        <g stroke="var(--rule)" stroke-width="1">
+          <line x1="110" y1="170" x2="680" y2="170"></line>
+        </g>
+        <g fill="var(--ink-3)" font-size="11" text-anchor="middle">
+          <text x="110" y="188">0</text>
+          <text x="239" y="188">25</text>
+          <text x="369" y="188">50</text>
+          <text x="499" y="188">75</text>
+          <text x="628" y="188">100</text>
+        </g>
+        <g stroke="var(--rule)" stroke-width="1">
+          <line x1="239" y1="166" x2="239" y2="174"></line>
+          <line x1="369" y1="166" x2="369" y2="174"></line>
+          <line x1="499" y1="166" x2="499" y2="174"></line>
+          <line x1="628" y1="166" x2="628" y2="174"></line>
+        </g>
+        <text x="394" y="205" fill="var(--ink-3)" font-size="11" text-anchor="middle">minutes per day</text>
+
+        <!-- Mothers -->
+        <text x="0" y="70" fill="var(--ink)" font-size="13" font-weight="500" font-family="'Public Sans', sans-serif">Mothers</text>
+        <line x1="390" y1="66" x2="649" y2="66" stroke="var(--series-1)" stroke-width="2" opacity="0.35"></line>
+        <circle class="hit" cx="390" cy="66" r="8" fill="var(--surface)" stroke="var(--series-1)" stroke-width="2.5" data-tip="Mothers, 1965 — 54 min/day"></circle>
+        <circle class="hit" cx="649" cy="66" r="8" fill="var(--series-1)" stroke="var(--surface)" stroke-width="2" data-tip="Mothers, 2012 — 104 min/day&#10;+50 minutes"></circle>
+        <text x="390" y="46" fill="var(--ink-2)" font-size="12" text-anchor="middle">54</text>
+        <text x="649" y="46" fill="var(--ink)" font-size="13" font-weight="600" text-anchor="middle">104</text>
+
+        <!-- Fathers -->
+        <text x="0" y="126" fill="var(--ink)" font-size="13" font-weight="500" font-family="'Public Sans', sans-serif">Fathers</text>
+        <line x1="193" y1="122" x2="416" y2="122" stroke="var(--series-2)" stroke-width="2" opacity="0.35"></line>
+        <circle class="hit" cx="193" cy="122" r="8" fill="var(--surface)" stroke="var(--series-2)" stroke-width="2.5" data-tip="Fathers, 1965 — 16 min/day"></circle>
+        <circle class="hit" cx="416" cy="122" r="8" fill="var(--series-2)" stroke="var(--surface)" stroke-width="2" data-tip="Fathers, 2012 — 59 min/day&#10;+43 minutes"></circle>
+        <text x="193" y="102" fill="var(--ink-2)" font-size="12" text-anchor="middle">16</text>
+        <text x="416" y="102" fill="var(--ink)" font-size="13" font-weight="600" text-anchor="middle">59</text>
+      </svg></div>
+      <p class="scrollhint">scroll the chart sideways to see it in full &rarr;</p>
+      <div class="legend">
+        <span class="key"><span class="swatch" style="background:var(--series-1)"></span> Mothers</span>
+        <span class="key"><span class="swatch" style="background:var(--series-2)"></span> Fathers</span>
+        <span class="key"><span class="dot-hollow"></span> 1965</span>
+        <span class="key"><span class="dot-solid"></span> 2012</span>
+      </div>
+      <div class="prov">
+        <span>Dotti Sani &amp; Treas 2016</span><span class="sep">·</span>
+        <span>harmonised time-use diaries</span><span class="sep">·</span>
+        <span>1965–2012</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+    </figure>
+
+    <div class="col">
+      <p>Corroborating series point the same way. US fathers went from <span class="num">2.5</span> to <span class="num">7.3</span> hours a week between 1965 and 2011. The ratio of fathers' to mothers' time among full-time employed parents rose from <span class="num">.36</span> in the 1960s to <span class="num">.53</span> in the 1990s. In South Korea fathers went from under 25 minutes a day in 1999 to about 60 in 2014 — while mothers rose from 130 to over 200.</p>
+      <p>The mechanism: parents absorbed the time from leisure, sleep, housework and personal care. Mothers' childcare time did not fall as fathers' rose.</p>
+
+      <h3>Current levels, and the part that is invisible</h3>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Primary childcare, United States, 2024</caption>
+        <thead><tr><th scope="col">Group</th><th scope="col" class="v">Hours per day</th></tr></thead>
+        <tbody>
+          <tr><td>Women, household with a child under 6</td><td class="v"><b>2.8</b></td></tr>
+          <tr><td>Men, household with a child under 6</td><td class="v">1.7</td></tr>
+          <tr><td>Adults, youngest child 6–17</td><td class="v">0.78</td></tr>
+          <tr><td>Not employed, child under 6</td><td class="v">&gt;3.3</td></tr>
+          <tr><td>Employed, child under 6</td><td class="v">1.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>BLS American Time Use Survey</span><span class="sep">·</span>
+        <span>2024</span><span class="sep">·</span>
+        <span class="conf high">confidence: high</span>
+      </div>
+
+      <p style="margin-top:16px">Within the under-6 group, mothers spend <span class="num">1.3</span> hours on physical care against <span class="num">38</span> minutes for fathers. But <strong>secondary childcare</strong> — a child under 13 in your care while you do something else — is several times larger, and is where most co-presence actually lives: mothers of children aged 5–12 went from <span class="num">5.8</span> to <span class="num">8.2</span> hours a day between 2019 and 2020, fathers from <span class="num">4.5</span> to <span class="num">5.3</span>. About half of parents' waking hours involve two or more simultaneous activities.</p>
+
+      <h3>What that time contains</h3>
+      <p>Time-use surveys decompose "childcare" into categories that behave very differently: <strong>physical care</strong> (feeding, bathing, medical), <strong>developmental care</strong> (playing with, reading to, talking with and listening to, teaching), <strong>management</strong> (arranging schooling, activities, healthcare), <strong>transport</strong>, and <strong>supervisory</strong> time. The developmental category has grown fastest, carries the strongest association with child outcomes, and is the most unequally distributed.</p>
+
+      <h3>The sharpest inequality in the data</h3>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="tnum">65<span style="font-size:1.1rem"> min</span></div>
+        <div class="tlabel">developmental childcare — mothers with high school or less</div>
+        <div class="tdenom">per day · ATUS · 2008–2013</div>
+      </div>
+      <div class="tile">
+        <div class="tnum">80<span style="font-size:1.1rem"> min</span></div>
+        <div class="tlabel">developmental childcare — college-educated mothers, roughly double their earlier level</div>
+        <div class="tdenom">per day · ATUS · 2008–2013</div>
+      </div>
+      <div class="tile alt">
+        <div class="tnum">300<span style="font-size:1.1rem"> hrs</span></div>
+        <div class="tlabel">annual gap in direct parental engagement by parental education — about ten weeks of six-hour days</div>
+        <div class="tdenom">per year · ATUS analysis · 2010s</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <p style="margin-top:24px">Dotti Sani and Treas found a positive educational gradient in child-care time that <strong>widened in a number of countries and narrowed in none</strong>. The gradient is developmentally targeted rather than uniform: the education gap in <em>teaching</em> time is largest when children are 3–5, the school-readiness years, and the gap in <em>management</em> time is largest at ages 6–13 — in both cases precisely when that input matters most.</p>
+
+      <h3>Connection through language</h3>
+      <p>The most robust micro-level evidence on what connecting actually means has shifted decisively from volume to reciprocity. Hart and Risley's original <span class="num">30-million-word</span> gap by age 3 is now widely regarded as inflated — a Denver replication across 329 families put it closer to <span class="num">4 million</span> words by age 4. But the mechanism survived replication even as the magnitude did not.</p>
+      <p>Romeo and colleagues found that <strong>conversational turns predicted language-related brain function over and above socioeconomic status and the sheer quantity of words heard</strong>. The unit of connection is the back-and-forth, not words delivered at a child. By 18 months, adult word count, child vocalisations and conversational turns all run <span class="num">0.5–0.7</span> standard deviations higher in more-educated families.</p>
+      <div class="prov">
+        <span>Romeo et al., <em>Psychological Science</em></span><span class="sep">·</span>
+        <span>LENA day-long recordings</span><span class="sep">·</span>
+        <span>2018</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+
+      <h3>Connection through ritual</h3>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Family rituals, United States</caption>
+        <thead><tr><th scope="col">Ritual</th><th scope="col" class="v">Share</th></tr></thead>
+        <tbody>
+          <tr><td>Parents eating dinner together 6–7 nights a week</td><td class="v"><b>53%</b></td></tr>
+          <tr><td>…all seven nights — stable since 1997</td><td class="v">35–38%</td></tr>
+          <tr><td>Households with 7+ family meals a week</td><td class="v">49.6%</td></tr>
+          <tr><td>Parents of 0–4s reading to them frequently — down from 64% thirteen years earlier</td><td class="v">41%</td></tr>
+          <tr><td>Girls aged 0–4 read to every or nearly every day</td><td class="v">44%</td></tr>
+          <tr><td>Boys aged 0–4 read to every or nearly every day</td><td class="v">29%</td></tr>
+          <tr><td>Parents reporting a bedtime routine</td><td class="v">90%</td></tr>
+          <tr><td>…that includes reading a story</td><td class="v">67%</td></tr>
+          <tr><td>…that includes <strong>talking about their day</strong></td><td class="v">23%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="prov">
+        <span>Gallup</span><span class="sep">·</span><span>NHANES</span><span class="sep">·</span>
+        <span>pediatric survey data</span><span class="sep">·</span><span>1997–2020s</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+      <p style="margin-top:16px">That last row deserves attention. The most conversationally rich element of the bedtime routine is the least common one.</p>
+    </div>
+
+    <figure>
+      <figcaption>
+        <span class="ftitle">What interrupts the interaction</span>
+        <span class="fsub">Mothers reporting technology interrupting interaction with their infant or young child at least sometimes, by activity.</span>
+      </figcaption>
+      <div class="chartscroll"><svg class="chart" viewBox="0 0 720 226" role="img" aria-label="Bar chart: technology interrupts playtime for 65 percent of mothers, book reading 36 percent, mealtime 26 percent, bedtime 26 percent, discipline 22 percent.">
+        <g font-size="12.5" fill="var(--ink)" font-family="'Public Sans', sans-serif">
+          <text x="0" y="26">Playtime</text>
+          <text x="0" y="66">Book reading</text>
+          <text x="0" y="106">Mealtime</text>
+          <text x="0" y="146">Bedtime</text>
+          <text x="0" y="186">Discipline &amp; limit-setting</text>
+        </g>
+        <g>
+          <rect class="hit" x="190" y="10" width="429" height="22" rx="4" fill="var(--series-2)" data-tip="Playtime — 65%"></rect>
+          <rect class="hit" x="190" y="50" width="238" height="22" rx="4" fill="var(--series-2)" opacity="0.62" data-tip="Book reading — 36%"></rect>
+          <rect class="hit" x="190" y="90" width="172" height="22" rx="4" fill="var(--series-2)" opacity="0.62" data-tip="Mealtime — 26%"></rect>
+          <rect class="hit" x="190" y="130" width="172" height="22" rx="4" fill="var(--series-2)" opacity="0.62" data-tip="Bedtime — 26%"></rect>
+          <rect class="hit" x="190" y="170" width="145" height="22" rx="4" fill="var(--series-2)" opacity="0.62" data-tip="Discipline and limit-setting — 22%"></rect>
+        </g>
+        <g font-size="12.5" fill="var(--ink)" font-weight="600">
+          <text x="629" y="26">65%</text>
+          <text x="438" y="66">36%</text>
+          <text x="372" y="106">26%</text>
+          <text x="382" y="146">26%</text>
+          <text x="345" y="186">22%</text>
+        </g>
+        <line x1="190" y1="204" x2="190" y2="6" stroke="var(--rule)" stroke-width="1"></line>
+        <text x="190" y="220" fill="var(--ink-3)" font-size="11">0%</text>
+        <text x="718" y="220" fill="var(--ink-3)" font-size="11" text-anchor="end">70%</text>
+      </svg></div>
+      <p class="scrollhint">scroll the chart sideways to see it in full &rarr;</p>
+      <div class="prov">
+        <span>technoference literature</span><span class="sep">·</span>
+        <span>self-report, largely convenience samples</span><span class="sep">·</span>
+        <span>2010s</span><span class="sep">·</span>
+        <span class="conf low">confidence: low</span><span class="sep">·</span>
+        <span>few nationally representative studies</span>
+      </div>
+    </figure>
+
+    <div class="col">
+      <p>Alongside these: <span class="num">68%</span> of parents say they feel distracted by their smartphone when spending time with their children, <span class="num">92%</span> of mothers of infants use screens during daily feedings and <span class="num">37%</span> often text or use apps <em>during</em> feeding, and <span class="num">47%</span> of US parents say they spend too much time on their phone.</p>
+      <p>The measured effect is not less time but <strong>less contingency</strong>: when parents use screens around children there are fewer interactions and parents are less responsive to the child's bids. Since the language evidence establishes that contingent back-and-forth is the active ingredient, this hits precisely the mechanism that matters.</p>
+
+      <h3>The global stimulation deficit</h3>
+      <p>Applying the same lens outside rich countries, through UNICEF's Multiple Indicator Cluster Surveys: roughly <strong>4 in 10</strong> children aged 2–4 do not get enough responsive interaction or stimulation at home. More than <span class="num">80 million</span> children aged 2–4 — about 1 in 5 globally — do not play with their caregivers at home, and more than <span class="num">90 million</span> under-5s lack adequate learning materials. Across 74 countries, about <span class="num">40 million</span> children aged 3–4 have fathers who do not engage in early learning with them.</p>
+    </div>
+
+    <figure>
+      <figcaption>
+        <span class="ftitle">Who provides high-level stimulation in low- and middle-income countries</span>
+        <span class="fsub">Share of each caregiver type providing high levels of stimulation, MICS analysis across LMICs.</span>
+      </figcaption>
+      <div class="chartscroll"><svg class="chart" viewBox="0 0 720 176" role="img" aria-label="Bar chart: 39.8 percent of mothers, 20.7 percent of other adult caregivers and 11.9 percent of fathers provide high levels of stimulation.">
+        <g font-size="12.5" fill="var(--ink)" font-family="'Public Sans', sans-serif">
+          <text x="0" y="28">Mothers</text>
+          <text x="0" y="78">Other adult caregivers</text>
+          <text x="0" y="128">Fathers</text>
+        </g>
+        <g>
+          <rect class="hit" x="200" y="10" width="414" height="26" rx="4" fill="var(--series-1)" data-tip="Mothers — 39.8%"></rect>
+          <rect class="hit" x="200" y="60" width="215" height="26" rx="4" fill="var(--series-1)" opacity="0.6" data-tip="Other adult caregivers, largely grandparents — 20.7%"></rect>
+          <rect class="hit" x="200" y="110" width="124" height="26" rx="4" fill="var(--series-1)" opacity="0.6" data-tip="Fathers — 11.9%"></rect>
+        </g>
+        <g font-size="13" fill="var(--ink)" font-weight="600">
+          <text x="624" y="28">39.8%</text>
+          <text x="425" y="78">20.7%</text>
+          <text x="334" y="128">11.9%</text>
+        </g>
+        <line x1="200" y1="150" x2="200" y2="6" stroke="var(--rule)" stroke-width="1"></line>
+        <text x="200" y="167" fill="var(--ink-3)" font-size="11">0%</text>
+        <text x="718" y="167" fill="var(--ink-3)" font-size="11" text-anchor="end">50%</text>
+      </svg></div>
+      <p class="scrollhint">scroll the chart sideways to see it in full &rarr;</p>
+      <div class="prov">
+        <span>PLOS One MICS analysis</span><span class="sep">·</span>
+        <span>low- and middle-income countries</span><span class="sep">·</span>
+        <span>2020</span><span class="sep">·</span>
+        <span class="conf mod">confidence: moderate</span>
+      </div>
+    </figure>
+
+    <div class="col">
+      <p>This is the cleanest link between the three questions on this page. Where fathers supply <span class="num">11.9%</span> of high-level stimulation and mothers <span class="num">39.8%</span>, the remaining <span class="num">20.7%</span> credited to "other adult caregivers" is substantially the grandparents of Question 2.</p>
+
+      <h3>Connection at a distance</h3>
+      <p>For hundreds of millions of children, how parents connect is a technology question. More than <span class="num">60%</span> of carers and young adult children in transnational families use social media and internet applications as their main channel. A migrant mother can call and text several times a day and leave a webcam open for twelve hours, producing what researchers call <em>ambient co-presence</em>.</p>
+      <p>The governing concept is <strong>polymedia</strong>: families do not pick one channel, they layer several — voice calls, SMS, video, social-media monitoring — and the choice among the available media itself carries emotional meaning. Channel selection is gendered in practice: in a study of 378 migrant parents in southern China, parents used calls and texts with older sons and audiovisual contact with daughters. Video calls turn out to be jointly choreographed across three generations — parents, children, <em>and</em> the grandparent carers.</p>
+      <div class="note warn" style="margin-top:24px">
+        <h4>The finding optimistic accounts usually skip</h4>
+        <p>The technology restores the <em>parent's</em> sense of parenting far more reliably than it restores the <em>child's</em> sense of being parented. Madianou and Miller found that while mothers felt empowered by phone-based parenting, their children were significantly more ambivalent — and across several studies, left-behind children describe mediated contact as justifying and prolonging the absence.</p>
+      </div>
+
+      <h3>What actually constitutes connection</h3>
+      <p>Time is a proxy. The constructs that predict child outcomes are <strong>responsiveness</strong> (warmth, sensitivity, and contingent reaction to distress), <strong>demandingness</strong> (rule-setting and consistent enforcement), and <strong>involvement</strong> (monitoring and knowledge of the child's life).</p>
+      <p>Parental warmth predicts self-esteem, emotional stability and independence, and correlates negatively with child hostility and aggression. Responsiveness to distress and warmth are separable: responsiveness to distress predicts better regulation of <em>negative</em> affect, warmth better regulation of <em>positive</em> affect. Attachment grounded in warm, responsive parenting predicts mental health across cultures, and parent–child relationship quality predicts subjective well-being in adulthood across a diverse set of countries.</p>
+    </div>
+  </div>
+</section>
+
+<section id="synthesis">
+  <div class="wrap">
+    <div class="qhead">
+      <div class="qlabel">Synthesis</div>
+      <h2>The care triangle</h2>
+      <p class="ask">In most of the world children are not raised by "parents" or by "a grandparent" but by a distributed system with three nodes.</p>
+    </div>
+
+    <div class="col">
+      <p>The three questions are one system. Working parents, a proximate kin carer — usually a grandmother — and, increasingly, a formal or informal childcare provider. Which configuration a child lives in determines how their parents connect with them.</p>
+    </div>
+
+    <div class="flowgrid">
+      <div class="flowcell">
+        <div class="fname">Rich-country dual earner</div>
+        <div class="flowstep"><span class="slab">employment</span><span class="sval">~47% both full-time</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">care substitution</span><span class="sval">Formal ECEC (29% of under-3s) plus occasional grandparent care</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">connection</span><span class="sval">Co-present, time-rich, phone-interrupted</span></div>
+      </div>
+      <div class="flowcell">
+        <div class="fname">Rich-country single parent</div>
+        <div class="flowstep"><span class="slab">employment</span><span class="sval">30% of children in jobless households</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">care substitution</span><span class="sval">Patchy; cost-constrained</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">connection</span><span class="sval">Time-poor, high stress</span></div>
+      </div>
+      <div class="flowcell">
+        <div class="fname">Low-income, in-place work</div>
+        <div class="flowstep"><span class="slab">employment</span><span class="sval">Near-universal, informal — ~95% of employed South Asian women</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">care substitution</span><span class="sval">Child present during work; older siblings; grandmother</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">connection</span><span class="sval">Co-present but low-stimulation — 4 in 10 children under-stimulated</span></div>
+      </div>
+      <div class="flowcell">
+        <div class="fname">Migration-separated</div>
+        <div class="flowstep"><span class="slab">employment</span><span class="sval">Parent working elsewhere; hundreds of millions of children</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">care substitution</span><span class="sval">Grandparents — 96% in China when both parents migrate</span></div>
+        <div class="flowarrow">↓</div>
+        <div class="flowstep"><span class="slab">connection</span><span class="sval">Mediated: voice, video, polymedia, ambient co-presence</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3>Three findings that reverse common assumptions</h3>
+      <ol class="gaps">
+        <li><strong>Dual-earner households did not reduce parental time with children.</strong> Maternal employment and parental childcare time rose together across five decades. The trade-off was made against leisure and sleep, not against children.</li>
+        <li><strong>Grandparent care is not primarily a poor-country or crisis phenomenon.</strong> It is <em>most prevalent</em> in Nordic countries with excellent public childcare — just least intensive there. Prevalence and intensity move in opposite directions.</li>
+        <li><strong>The class gap in parenting is widening, not shrinking.</strong> The educational gradient in developmental childcare grew in multiple countries and shrank in none, and now amounts to roughly 300 hours a year of direct engagement.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="gaps">
+  <div class="wrap">
+    <div class="qhead">
+      <div class="qlabel">Confidence &amp; gaps</div>
+      <h2>What this cannot tell you</h2>
+      <p class="ask">Every figure above carries a grade. Here is what the grades mean and what no available source can answer.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Confidence in the headline claims</caption>
+        <thead><tr><th scope="col">Claim</th><th scope="col">Grade</th><th scope="col">Why</th></tr></thead>
+        <tbody>
+          <tr><td>~47% of OECD children in couple households have two full-time working parents</td><td><span class="conf high">high</span></td><td>Harmonised LFS microdata, annual</td></tr>
+          <tr><td>US 52% two-full-time-earner couples, 2025</td><td><span class="conf high">high</span></td><td>CPS, long consistent series</td></tr>
+          <tr><td>Mothers 54→104 min, fathers 16→59 min per day</td><td><span class="conf high">high</span></td><td>122,271-parent harmonised time-use sample</td></tr>
+          <tr><td>Skip-generation ≈ 2.4% of under-15s in LMICs</td><td><span class="conf mod">moderate</span></td><td>DHS cross-country average; countries enter and exit the sample</td></tr>
+          <tr><td>38% of children globally live with relatives</td><td><span class="conf mod">moderate</span></td><td>130-country synthesis; census definitions differ</td></tr>
+          <tr><td>~4 in 10 children aged 2–4 under-stimulated</td><td><span class="conf mod">moderate</span></td><td>MICS self-report, three-day recall</td></tr>
+          <tr><td>China: 41.8m rural left-behind children</td><td><span class="conf mod">moderate</span></td><td>2020 census, but competing figures span 12m–68.8m by definition</td></tr>
+          <tr><td>"Hundreds of millions" of left-behind children</td><td><span class="conf low">low</span></td><td>No agency produces this; definitional chaos</td></tr>
+          <tr><td>Technoference percentages</td><td><span class="conf low">low</span></td><td>Mostly convenience samples and self-report</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col">
+      <h3>Gaps this review cannot close</h3>
+      <ol class="gaps">
+        <li><strong>No household-employment-status data for most of the world.</strong> The OECD's LMF series has no counterpart for South Asia, sub-Saharan Africa, or most of Southeast Asia.</li>
+        <li><strong>No global grandparent-care aggregate.</strong> SHARE covers Europe, the ACS covers the US, and China's figures come from a mix of official and survey sources with inconsistent definitions. Nobody sums them.</li>
+        <li><strong>Time-use data is absent for most of the world's children.</strong> The 11-country sample behind the central trend is entirely Western.</li>
+        <li><strong>Left-behind children have no reliable global denominator</strong>, and China's own range spans a factor of five.</li>
+        <li><strong>Informal and subsistence work is systematically undercounted</strong>, biasing every maternal-employment figure for low-income countries downward by an unknown amount.</li>
+      </ol>
+
+      <h3>How to close them</h3>
+      <ul class="plain">
+        <li>Pull <strong>IPUMS-International</strong> census microdata to build a genuinely global household-composition-by-employment cross-tabulation — the only realistic route to a true worldwide answer for Question 1.</li>
+        <li>Pull <strong>DHS/MICS household rosters</strong> directly to compute skip-generation shares on a consistent definition rather than relying on published cross-country averages.</li>
+        <li>Use the <strong>Multinational Time Use Study</strong> harmonised files rather than published country summaries for Question 3.</li>
+        <li>Anchor any updated co-residence figures on UN DESA's <strong>Household Size and Composition database, refreshed in 2026</strong> — 1,129 sources, 200 countries, ~98% of world population, reference dates 1959–2025.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <div class="qhead">
+      <div class="qlabel">References</div>
+      <h2>Sources</h2>
+    </div>
+    <div class="sources">
+      <div>
+        <h4>Parental employment</h4>
+        <ul>
+          <li><a href="https://www.oecd.org/en/data/datasets/oecd-family-database.html">OECD Family Database</a> — LMF1.1, LMF1.2, LMF2.1, LMF2.2, LMF2.3, LMF2.5, PF3.2</li>
+          <li><a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Household_composition_statistics">Eurostat — Household composition statistics</a></li>
+          <li><a href="https://www.pewresearch.org/social-trends/2026/06/16/how-family-work-arrangements-have-changed-over-time/">Pew Research Center — How family work arrangements have changed over time</a></li>
+          <li><a href="https://www.ilo.org/media/365356/download">ILO — New data on gender gaps in the labour market</a></li>
+          <li><a href="https://ilostat.ilo.org/topics/women/">ILOSTAT — Statistics on women</a></li>
+          <li><a href="https://www.unwomen.org/en/news/in-focus/csw61/women-in-informal-economy">UN Women — Women in the informal economy</a></li>
+          <li><a href="https://www.oecd.org/en/publications/2025/09/education-at-a-glance-2025_c58fc9ae/full-report/how-does-the-provision-of-and-participation-in-early-childhood-education-and-care-vary-across-countries_86b8275d.html">OECD — Education at a Glance 2025, ECEC participation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Grandparents &amp; living arrangements</h4>
+        <ul>
+          <li><a href="https://www.un.org/development/desa/pd/content/patterns-and-trends-household-size-and-composition-evidence-united-nations-dataset">UN DESA — Patterns and trends in household size and composition</a></li>
+          <li><a href="https://www.niussp.org/family-and-households/skip-generation-household-trends-in-low-and-middle-income-countries-les-menages-avec-saut-de-generation-dans-les-pays-a-revenu-faible-et-intermediaire/">N-IUSSP — Skip-generation household trends in LMICs</a></li>
+          <li><a href="https://www.pewresearch.org/short-reads/2020/03/31/with-billions-confined-to-their-homes-worldwide-which-living-arrangements-are-most-common/">Pew — Which living arrangements are most common worldwide</a></li>
+          <li><a href="https://www.census.gov/library/stories/2024/03/grandparents-living-with-grandchildren.html">US Census Bureau — Grandparents Living With Grandchildren</a></li>
+          <li><a href="https://www.statssa.gov.za/publications/92-02-04/92-02-042023.pdf">Statistics South Africa — Children Living With Grandparents, 2023</a></li>
+          <li><a href="https://link.springer.com/article/10.1007/s10433-023-00785-8">Prevalence of grandparental childcare in Europe — <em>European Journal of Ageing</em>, 2023</a></li>
+          <li><a href="https://dhsprogram.com/data/Guide-to-DHS-Statistics/Children%E2%80%99s_Living_Arrangements_and_Orphanhood.htm">DHS Program — Children's Living Arrangements and Orphanhood</a></li>
+          <li><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)32558-3/fulltext">The Lancet — Health impacts of parental migration on left-behind children</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Parent–child time &amp; interaction</h4>
+        <ul>
+          <li><a href="https://www.bls.gov/news.release/atus.htm">BLS — American Time Use Survey</a></li>
+          <li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jomf.12305">Dotti Sani &amp; Treas — Educational Gradients in Parents' Child-Care Time Across Countries, 1965–2012</a></li>
+          <li><a href="https://csde.washington.edu/downloads/bianchi_AJS_paper.pdf">Bianchi — Are Parents Investing Less in Children?</a></li>
+          <li><a href="https://www.nber.org/system/files/working_papers/w15284/w15284.pdf">Ramey &amp; Ramey — The Rug Rat Race</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5945324/">Romeo et al. — Beyond the 30-Million-Word Gap</a></li>
+          <li><a href="https://www.equimundo.org/resources/state-of-the-worlds-fathers-2023/">Equimundo — State of the World's Fathers 2023</a></li>
+          <li><a href="https://data.unicef.org/topic/early-childhood-development/home-environment/">UNICEF DATA — Home environment</a></li>
+          <li><a href="https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0236107">PLOS One — Maternal, paternal and other caregivers' stimulation in LMICs</a></li>
+          <li><a href="https://news.gallup.com/poll/166628/families-routinely-dine-together-home.aspx">Gallup — Most U.S. Families Still Routinely Dine Together</a></li>
+          <li><a href="https://www.nature.com/articles/s44271-024-00161-x">Parent-child relationship quality predicts subjective well-being in adulthood — <em>Communications Psychology</em></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Transnational &amp; mediated parenting</h4>
+        <ul>
+          <li><a href="https://consensus.app/papers/details/f84008e0a0c55c06a379b3f9d0b32248/">Madianou &amp; Miller — Mobile phone parenting: Filipina migrant mothers and their left-behind children, <em>New Media &amp; Society</em>, 2011</a></li>
+          <li><a href="https://consensus.app/papers/details/ec184442264050f8b9fb2bc5ca20b31e/">Liu et al. — Migrant Parenting and Mobile Phone Use, 2017</a></li>
+          <li><a href="https://consensus.app/papers/details/1608c8893f6f55748c2e6d0ce312dbdd/">Gan — Choreographing digital love, <em>JCMC</em>, 2023</a></li>
+          <li><a href="https://consensus.app/papers/details/7694d2f7436d570da1ac98dc23c0a651/">Acedera &amp; Yeoh — Care triangles and the mediated spaces of mobile phones, <em>Geoforum</em>, 2021</a></li>
+          <li><a href="https://consensus.app/papers/details/7e52dc9fc9e052cc9bb4ca89cc9c048a/">Liang et al. — Mobile phone parenting in work-separated Chinese families, 2022</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Compiled September 2026. A machine-readable companion dataset of 171 indicators — geography, value, unit, reference year, source and confidence grade per row — accompanies this review. Figures are reported at the precision their source reports; where sources disagree, the range is shown rather than a midpoint. Several primary-source domains were unreachable from the compiling environment, so those figures were retrieved through search indexes of the same documents; canonical URLs are given above so every number can be checked at source.</p>
+  </div>
+</footer>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var tip = document.getElementById('tip');
+  var current = null;
+
+  function show(el, x, y) {
+    var txt = el.getAttribute('data-tip');
+    if (!txt) return;
+    tip.textContent = '';
+    txt.split('\n').forEach(function (line, i) {
+      if (i) tip.appendChild(document.createElement('br'));
+      tip.appendChild(document.createTextNode(line));
+    });
+    tip.classList.add('on');
+    place(x, y);
+  }
+
+  function place(x, y) {
+    var r = tip.getBoundingClientRect();
+    var left = x + 14;
+    var top = y - r.height - 12;
+    if (left + r.width > window.innerWidth - 8) left = window.innerWidth - r.width - 8;
+    if (left < 8) left = 8;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+
+  function hide() {
+    tip.classList.remove('on');
+    current = null;
+  }
+
+  document.addEventListener('pointermove', function (e) {
+    var el = e.target.closest ? e.target.closest('.hit') : null;
+    if (el) {
+      if (el !== current) { current = el; show(el, e.clientX, e.clientY); }
+      else place(e.clientX, e.clientY);
+    } else if (current) {
+      hide();
+    }
+  }, { passive: true });
+
+  document.addEventListener('pointerleave', hide);
+  window.addEventListener('scroll', hide, { passive: true });
+
+  // Keyboard access: expose each mark's value as a focusable description.
+  document.querySelectorAll('.hit').forEach(function (el) {
+    var t = el.getAttribute('data-tip');
+    if (!t) return;
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'img');
+    el.setAttribute('aria-label', t.replace(/\n/g, ', '));
+    el.addEventListener('focus', function () {
+      var r = el.getBoundingClientRect();
+      show(el, r.left + r.width / 2, r.top);
+    });
+    el.addEventListener('blur', hide);
+  });
+})();
+</script>

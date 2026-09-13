@@ -5,6 +5,28 @@
 Compiled September 2026. All figures are attributed to a named source and survey year.
 Where no defensible global number exists, this report says so rather than inventing one.
 
+## Files in this folder
+
+| File | What it is |
+|---|---|
+| `README.md` | This report — the full prose review with all tables and sourcing. |
+| [`indicators.csv`](indicators.csv) | 171 machine-readable rows: `part, topic, geography, indicator, value, unit, reference_year, source, confidence`. Every figure quoted in the report appears here with its provenance. |
+| [`who-raises-the-children.html`](who-raises-the-children.html) | The same review as a self-contained web page, with charts. Source of the published version at <https://claude.ai/code/artifact/22e86950-faca-43fe-8a1c-66b1c9a31c55>. |
+
+The CSV is the canonical machine-readable form. Load it with:
+
+```python
+import pandas as pd
+df = pd.read_csv("indicators.csv")
+df[df.confidence == "high"]              # only the well-evidenced figures
+df[df.part == 2].sort_values("geography")  # the grandparent-care evidence
+```
+
+Note that `value` mixes units — read it together with the `unit` column, which
+distinguishes `percent`, `count`, `minutes_per_day`, `hours_per_week`,
+`percent_minimum`/`percent_maximum` (one-sided bounds reported as such by the
+source), `ratio`, `standard_deviations`, `years` and `usd`.
+
 ---
 
 ## Read this first: there is no single worldwide dataset
