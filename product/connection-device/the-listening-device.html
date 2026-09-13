@@ -1,0 +1,803 @@
+<title>The Listening Device</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root {
+  color-scheme: light;
+  --ground: #f0eff3;
+  --surface: #fbfafd;
+  --surface-2: #e7e5ec;
+  --ink: #17151f;
+  --ink-2: #55505f;
+  --ink-3: #827c8c;
+  --rule: #dcd9e2;
+  --rule-strong: #bdb8c8;
+  --accent: #443078;
+  --accent-2: #6b55a8;
+  --accent-soft: #e8e4f2;
+  --on-accent: #fbfafd;
+  --signal: #9c3f27;
+  --signal-soft: #f6e7e1;
+  --measure: 66ch;
+  --band: 1060px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #141219;
+    --surface: #1d1a24;
+    --surface-2: #262231;
+    --ink: #efedf3;
+    --ink-2: #b0a9bd;
+    --ink-3: #857e93;
+    --rule: #322c3e;
+    --rule-strong: #473f57;
+    --accent: #a89ae6;
+    --accent-2: #8d7ed0;
+    --accent-soft: #241f33;
+    --on-accent: #141219;
+    --signal: #e0866a;
+    --signal-soft: #2c1d17;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #141219;
+  --surface: #1d1a24;
+  --surface-2: #262231;
+  --ink: #efedf3;
+  --ink-2: #b0a9bd;
+  --ink-3: #857e93;
+  --rule: #322c3e;
+  --rule-strong: #473f57;
+  --accent: #a89ae6;
+  --accent-2: #8d7ed0;
+  --accent-soft: #241f33;
+  --on-accent: #141219;
+  --signal: #e0866a;
+  --signal-soft: #2c1d17;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 17.5px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--band); margin: 0 auto; padding-inline: 22px; }
+.col { max-width: var(--measure); }
+
+h1, h2, h3 {
+  font-family: Archivo, system-ui, sans-serif;
+  margin: 0;
+  text-wrap: balance;
+  letter-spacing: -0.018em;
+  font-weight: 600;
+}
+p { margin: 0; }
+.col p + p { margin-top: 15px; }
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+strong { font-weight: 600; }
+
+/* masthead */
+.masthead { background: var(--surface); border-bottom: 1px solid var(--rule); }
+.masthead .wrap { padding-block: 54px 38px; display: flex; flex-direction: column; gap: 24px; }
+h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.02; font-weight: 700; max-width: 14ch; }
+.standfirst {
+  font-size: 1.14rem; color: var(--ink-2); max-width: 56ch;
+}
+.metaline {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: 5px 16px;
+  padding-top: 14px; border-top: 1px solid var(--rule);
+}
+.metaline .sep { color: var(--rule-strong); }
+
+/* the headline recommendation */
+.verdict-hero {
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid var(--accent);
+}
+.verdict-hero .wrap { padding-block: 34px; display: flex; flex-direction: column; gap: 14px; }
+.verdict-hero .eyebrow { color: inherit; opacity: .72; }
+.verdict-hero .big {
+  font-family: Archivo, system-ui, sans-serif;
+  font-size: clamp(1.4rem, 3.4vw, 2.1rem);
+  font-weight: 600; line-height: 1.2; max-width: 24ch;
+  letter-spacing: -0.02em;
+}
+.verdict-hero p { max-width: 60ch; opacity: .9; font-size: 1.02rem; }
+
+/* nav */
+.tnav {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.tnav .wrap { display: flex; flex-wrap: wrap; gap: 3px 24px; padding-block: 11px; }
+.tnav a {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--ink-2); text-decoration: none;
+  border-bottom: 1px solid transparent; padding-block: 2px;
+}
+.tnav a:hover, .tnav a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+.tnav a span { color: var(--ink-3); }
+
+section { padding-block: 58px; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: none; }
+
+.shead { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+.shead h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.14; max-width: 24ch; }
+h3 { font-size: 1.2rem; margin-top: 40px; margin-bottom: 10px; }
+.col > * + h3 { margin-top: 42px; }
+
+/* verdict stamp */
+.stamp {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  font-weight: 600; padding: 6px 12px; border: 1.5px solid currentColor;
+  align-self: flex-start;
+}
+.stamp.kill { color: var(--signal); }
+.stamp.kill::before { content: "\2715"; font-size: 13px; letter-spacing: 0; }
+.stamp.build { color: var(--accent); }
+.stamp.build::before { content: "\25B6"; font-size: 10px; letter-spacing: 0; }
+.stamp.fund { color: var(--accent); border-style: dashed; }
+.stamp.fund::before { content: "\25C6"; font-size: 10px; letter-spacing: 0; }
+.stamp.spin { color: var(--ink-2); }
+.stamp.spin::before { content: "\21B1"; font-size: 13px; letter-spacing: 0; }
+
+/* option panel */
+.option {
+  background: var(--surface); border: 1px solid var(--rule);
+  padding: 26px 26px 28px; margin-top: 26px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.option > header { display: flex; flex-direction: column; gap: 12px; }
+.option h3 { margin: 0; font-size: 1.35rem; }
+.option .letter {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
+}
+.option .lede { color: var(--ink-2); font-size: 1.02rem; max-width: 60ch; }
+.option h4 {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 500; margin: 0 0 8px;
+}
+.option .block { max-width: 62ch; }
+.option ol { margin: 0; padding-left: 1.35em; display: flex; flex-direction: column; gap: 9px; }
+.option ol li::marker { font-family: "IBM Plex Mono", monospace; font-size: .82em; color: var(--ink-3); }
+
+/* callouts */
+.pull {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 20px 24px;
+  font-size: 1.06rem;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pull.warn { border-left-color: var(--signal); background: var(--signal-soft); }
+.pull .lab {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
+}
+
+/* tables */
+.tablewrap { overflow-x: auto; margin-top: 26px; border: 1px solid var(--rule); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .93rem; min-width: 480px; }
+caption {
+  text-align: left; font-family: Archivo, sans-serif; font-weight: 600;
+  font-size: 1.02rem; padding: 17px 20px 13px; border-bottom: 1px solid var(--rule);
+}
+th, td { text-align: left; padding: 11px 20px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500;
+  white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--surface-2); }
+td .cite { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--ink-3); display: block; margin-top: 3px; }
+td.v { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: .87rem; }
+
+/* figures */
+figure {
+  margin: 32px 0 0; background: var(--surface); border: 1px solid var(--rule); padding: 26px 24px;
+}
+figcaption { margin-top: 18px; font-size: .93rem; color: var(--ink-2); max-width: 68ch; }
+figcaption b { font-family: Archivo, sans-serif; font-weight: 600; color: var(--ink); font-size: .95rem; }
+.figscroll { overflow-x: auto; }
+.dgm { width: 100%; min-width: 560px; height: auto; display: block; color: var(--ink); }
+.dgm text { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.dgm .bx { fill: var(--surface-2); stroke: var(--rule-strong); stroke-width: 1.5; }
+.dgm .bx-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.dgm .bx-ghost { fill: none; stroke: var(--rule-strong); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.dgm .lbl { fill: var(--ink); font-size: 12.5px; }
+.dgm .lbl-sm { fill: var(--ink-2); font-size: 11px; }
+.dgm .lbl-mut { fill: var(--ink-3); font-size: 11px; }
+.dgm .edge { stroke: var(--ink-2); stroke-width: 1.6; fill: none; }
+.dgm .edge-null { stroke: var(--ink-3); stroke-width: 1.4; fill: none; stroke-dasharray: 5 5; opacity: .75; }
+.dgm .edge-acc { stroke: var(--accent); stroke-width: 2.2; fill: none; }
+.dgm .edge-sig { stroke: var(--signal); stroke-width: 2.2; fill: none; }
+.dgm .t-acc { fill: var(--accent); font-size: 11px; font-weight: 600; }
+.dgm .t-sig { fill: var(--signal); font-size: 11px; font-weight: 600; }
+.scrollhint {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-3);
+  margin-top: 8px; display: none;
+}
+@media (max-width: 620px) { .scrollhint { display: block; } }
+
+/* spec cards */
+.specs { display: flex; flex-direction: column; gap: 20px; margin-top: 26px; }
+.spec { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); padding: 24px; }
+.spec .sid { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.spec h3 { margin: 6px 0 12px; font-size: 1.28rem; }
+.spec dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 7px 18px; font-size: .96rem; }
+.spec dt { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding-top: 5px; }
+.spec dd { margin: 0; }
+.spec .body { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; max-width: 62ch; }
+
+/* ladder */
+.ladder { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
+.rung { background: var(--surface); padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
+.rung .age { font-family: "IBM Plex Mono", monospace; font-size: .92rem; color: var(--accent); font-weight: 600; min-width: 62px; }
+.rung .rule-txt { font-size: .97rem; flex: 1 1 280px; }
+
+ol.plain, ul.plain { margin: 16px 0 0; padding-left: 1.35em; display: flex; flex-direction: column; gap: 11px; }
+ol.plain li::marker, ul.plain li::marker { color: var(--ink-3); font-family: "IBM Plex Mono", monospace; font-size: .84em; }
+
+.arch {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px; line-height: 1.7; color: var(--ink-2);
+  background: var(--surface); border: 1px solid var(--rule);
+  padding: 18px 20px; overflow-x: auto; white-space: pre; margin-top: 22px;
+}
+
+footer { border-top: 1px solid var(--rule); background: var(--surface); }
+footer .wrap { padding-block: 30px 46px; }
+footer p { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-3); max-width: 78ch; line-height: 1.65; }
+
+@media (max-width: 620px) {
+  body { font-size: 16.5px; }
+  section { padding-block: 42px; }
+  .option, .spec, figure { padding: 18px 15px; }
+  th, td, caption { padding-inline: 14px; }
+  .spec dl { grid-template-columns: 1fr; gap: 2px; }
+  .spec dt { padding-top: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Product design brief · September 2026</div>
+    <h1>The Listening Device</h1>
+    <p class="standfirst">Three products are hiding inside one idea: a device that listens on a child's behalf and helps a parent who has lost the thread. Only one of them should be built — and it isn't the obvious one.</p>
+    <div class="metaline">
+      <span>pressure test</span><span class="sep">·</span>
+      <span>concept specs</span><span class="sep">·</span>
+      <span>regulatory constraints</span><span class="sep">·</span>
+      <span>evidence base</span><span class="sep">·</span>
+      <span>prototype plan</span>
+    </div>
+  </div>
+</header>
+
+<div class="verdict-hero">
+  <div class="wrap">
+    <div class="eyebrow">Recommendation</div>
+    <p class="big">Build the Conduit. Fund it with the Mirror. Spin the health-alerting variant out as its own company. Kill the Monitor.</p>
+    <p>The Monitor is rejected because it does not work — the longitudinal evidence says intrusive monitoring produces <em>less</em> parental knowledge a year later — not because it is uncomfortable.</p>
+  </div>
+</div>
+
+<nav class="tnav" aria-label="Sections">
+  <div class="wrap">
+    <a href="#findings"><span>01</span> What changed</a>
+    <a href="#test"><span>02</span> Pressure test</a>
+    <a href="#specs"><span>03</span> Concept specs</a>
+    <a href="#constraints"><span>04</span> Constraints</a>
+    <a href="#prototype"><span>05</span> Prototype plan</a>
+    <a href="#open"><span>06</span> Open questions</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="findings">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">01 — What changed</div>
+      <h2>Two findings reorder the options</h2>
+    </div>
+
+    <div class="col">
+      <h3 style="margin-top:0">1.1 · Surveillance does not produce parental knowledge. Disclosure does.</h3>
+      <p>This is the hinge of the whole brief, and it is not a soft ethical point. It is a finding about whether the Monitor works <em>at its own stated job</em>.</p>
+      <p>For decades "parental monitoring" was assumed to mean tracking and surveillance. Stattin and Kerr noticed that the field had been measuring parents' <strong>knowledge</strong> while simply assuming its <strong>source</strong> — and then tested it.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>The monitoring reinterpretation literature</caption>
+        <thead><tr><th scope="col">Study</th><th scope="col">Design</th><th scope="col">Finding</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Stattin &amp; Kerr 2000<span class="cite">Child Development · 2,377 cites</span></td>
+            <td class="v">703 teens<br>+ parents</td>
+            <td>Parental knowledge came <strong>mainly from child disclosure</strong>. Disclosure — not surveillance — was the source most closely linked to lower delinquency. "Tracking and surveillance is not the best prescription for parental behavior."</td>
+          </tr>
+          <tr>
+            <td>Kerr &amp; Stattin 2000<span class="cite">Developmental Psychology · 1,734 cites</span></td>
+            <td class="v">1,186 teens<br>+ parents</td>
+            <td>Disclosure explained more of the knowledge→adjustment link than tracking did. Control efforts related to good adjustment <strong>only after</strong> partialling out the child's feelings of being controlled — which were themselves linked to <strong>poor</strong> adjustment.</td>
+          </tr>
+          <tr>
+            <td>Kerr, Stattin &amp; Burk 2010<span class="cite">J. Research on Adolescence · 624 cites</span></td>
+            <td class="v">938 students<br>2 yrs, longitudinal</td>
+            <td>Youth disclosure predicted parental knowledge. <strong>Neither control nor solicitation did.</strong> Monitoring efforts did not predict change in delinquency; disclosure did.</td>
+          </tr>
+          <tr>
+            <td>Keijsers 2016<span class="cite">Int. J. Behavioral Development</span></td>
+            <td class="v">within-family<br>cross-lagged</td>
+            <td>The monitoring→delinquency correlation <strong>was not present at the within-family level</strong>. The disclosure association was. Earlier findings were between-person artefacts.</td>
+          </tr>
+          <tr>
+            <td>Rote et al. 2018<span class="cite">Developmental Psychology</span></td>
+            <td class="v">174 families<br>1-yr follow-up</td>
+            <td><strong>Snooping</strong> was the variable that most differentiated families. Intrusive communicators reported more negative interactions, greater depression, and <strong>less maternal knowledge over time</strong>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col" style="margin-top:22px">
+      <p>Read that last row twice. Intrusive monitoring produced <strong>less</strong> parental knowledge a year later, alongside more depression. The Monitor doesn't merely trade relationship quality for information — over time it loses the information too, because it suppresses the disclosure that was generating the knowledge in the first place.</p>
+    </div>
+
+    <figure>
+      <div class="figscroll">
+        <svg class="dgm" viewBox="0 0 720 300" role="img" aria-label="Diagram: parental surveillance has no predictive effect on parental knowledge and suppresses child disclosure, while child disclosure does predict parental knowledge. Removing the suppression edge is why intrusive monitoring reduces knowledge over time.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"></path>
+            </marker>
+          </defs>
+
+          <rect class="bx" x="30" y="36" width="230" height="62"></rect>
+          <text class="lbl" x="145" y="62" text-anchor="middle">Parental surveillance</text>
+          <text class="lbl-sm" x="145" y="80" text-anchor="middle">tracking · solicitation · snooping</text>
+
+          <rect class="bx-acc" x="30" y="196" width="230" height="62"></rect>
+          <text class="lbl" x="145" y="222" text-anchor="middle">Child disclosure</text>
+          <text class="lbl-sm" x="145" y="240" text-anchor="middle">what the child volunteers</text>
+
+          <rect class="bx" x="470" y="112" width="220" height="76"></rect>
+          <text class="lbl" x="580" y="142" text-anchor="middle">What the parent</text>
+          <text class="lbl" x="580" y="160" text-anchor="middle">actually knows</text>
+          <text class="lbl-sm" x="580" y="178" text-anchor="middle">and lower delinquency</text>
+
+          <path class="edge-null" d="M 262 70 L 460 126" marker-end="url(#ah)"></path>
+          <text class="lbl-mut" x="352" y="62" text-anchor="middle">no predictive effect</text>
+          <text class="lbl-mut" x="352" y="76" text-anchor="middle">(Kerr 2010, longitudinal)</text>
+
+          <path class="edge-acc" d="M 262 224 L 460 176" marker-end="url(#ah)"></path>
+          <text class="t-acc" x="360" y="232" text-anchor="middle">predicts knowledge</text>
+
+          <path class="edge-sig" d="M 196 100 C 244 128, 244 166, 196 190" marker-end="url(#ah)"></path>
+          <text class="t-sig" x="256" y="149" text-anchor="start">suppresses</text>
+        </svg>
+      </div>
+      <p class="scrollhint">scroll the diagram sideways to see it in full &rarr;</p>
+      <figcaption><b>Why the Monitor fails at its own job.</b> The path a parent believes they are buying — surveillance to knowledge — carries no predictive effect in longitudinal data. The path that works runs through the child. And surveillance suppresses that path, which is how intrusive monitoring ends up producing <em>less</em> knowledge after a year, not more.</figcaption>
+    </figure>
+
+    <div class="col">
+      <div class="pull" style="margin-top:30px">
+        <span class="lab">Design consequence</span>
+        <p>The objective function is not <em>maximise what the parent knows</em>. It is <strong>maximise what the child volunteers</strong>. Every feature gets evaluated against whether it increases or suppresses voluntary disclosure. That single reframe kills most of the Monitor and specifies most of the Conduit.</p>
+      </div>
+
+      <p style="margin-top:20px">One note on timing: a meta-analysis of 31 longitudinal studies found disclosure declines (d&nbsp;=&nbsp;−.147) and secrecy rises (d&nbsp;=&nbsp;.194) normatively across adolescence. You are fighting a developmental headwind that strengthens every year — an argument for entering at ages 4–10 rather than at the age when parents panic and go shopping for monitoring products.</p>
+
+      <h3>1.2 · The technology splits cleanly</h3>
+      <p>"Alert me to what it hears" depends entirely on <em>what</em> it listens for, and the two branches are in completely different states of readiness.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Detection readiness — two different problems</caption>
+        <thead><tr><th scope="col">Signal</th><th scope="col">Where the technology is</th><th scope="col">Verdict</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Emotional distress</strong><span class="cite">speech emotion recognition</span></td>
+            <td>~79% accuracy on <em>curated, acted, adult</em> datasets. Models trained on adult speech degrade on children; voice quality varies enough between ages 6 and 18 that training sets need separate age and gender clusters. Clinical corpora are biased toward fear, anger and sadness, inflating apparent sensitivity.</td>
+            <td><span class="mono" style="color:var(--signal)">not viable</span></td>
+          </tr>
+          <tr>
+            <td><strong>Respiratory / health</strong><span class="cite">cough &amp; wheeze classification</span></td>
+            <td><strong>89% positive / 84% negative percent agreement</strong> against expert clinical diagnosis for asthma exacerbations, without examination or lung-function testing. CNN approaches ~92% accuracy, AUC&nbsp;&gt;&nbsp;95%. Runs in real time on commodity Android hardware; pediatric-specific detectors technically validated; commercial precedent exists.</td>
+            <td><span class="mono" style="color:var(--accent)">viable today</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col" style="margin-top:20px">
+      <p>At ~79% on clean adult data, a device firing on children's real-world audio generates a false-positive stream that makes parents anxious, trains them to ignore it, and — the first time a child discovers a false alarm was raised about them — ends disclosure permanently. This is not a "needs more training data" problem on a twelve-month horizon.</p>
+      <p class="mono" style="font-size:.82rem;color:var(--ink-3);margin-top:14px">Note the two rows above report different metrics (accuracy vs. percent agreement against clinical diagnosis) and are not directly comparable as numbers. The claim is about readiness, not a head-to-head score.</p>
+
+      <div class="pull" style="margin-top:26px">
+        <span class="lab">Design consequence</span>
+        <p>"Alert me to what it hears" is a real product — but the signal is <strong>physiological, not emotional</strong>. Alerting on a wheeze is a medical service to the child. Alerting on a mood is a report on the child. Different businesses, different buyers, and only one of them is buildable now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">02 — Pressure test</div>
+      <h2>Three products, with kill criteria</h2>
+    </div>
+
+    <div class="option">
+      <header>
+        <span class="letter">Option A</span>
+        <h3>The Monitor — hears the child, alerts the parent</h3>
+        <p class="lede">The intuitive product. What worried parents ask for, and a mature market: Bark scans messages, images and songs across 29+ harmful themes with real-time alerts; Gabb removes browser, social and app store entirely; AngelSense and Jiobit do location. Buyers exist and are already spending.</p>
+        <span class="stamp kill">Kill</span>
+      </header>
+      <div class="block">
+        <h4>What kills it</h4>
+        <ol>
+          <li><strong>It fails at its own job.</strong> Intrusive monitoring reduces parental knowledge over a one-year horizon. You would be selling a knowledge product that destroys knowledge.</li>
+          <li><strong>The core detector doesn't work.</strong> Emotional distress detection is ~79% on clean adult data and degrades on children.</li>
+          <li><strong>Third-party consent is unsolvable.</strong> Your child talks to other children. You cannot obtain consent from their parents. Ten to twelve US states require all-party consent, and this is criminal law, not a terms-of-service matter.</li>
+          <li><strong>It has a discovery date.</strong> Every covert-monitoring product is eventually found. The relationship cost is paid in full at that moment, and it is paid by the child.</li>
+          <li><strong>Peer stigma is a harm you impose on the child</strong> to solve the parent's problem. Jiobit's own positioning — sewn into clothing, for kids who won't tolerate visible wearables — is the industry conceding the point.</li>
+        </ol>
+      </div>
+      <div class="block">
+        <h4>What survives</h4>
+        <p>A narrow <strong>health-alerting device</strong> for children with asthma, epilepsy or complex medical needs, and <strong>developmental screening</strong> — low conversational-turn counts flagged for professional assessment, which is LENA's validated use. Both are defensible because the signal is physiological, the alert is actionable, and the child is the beneficiary.</p>
+        <p style="margin-top:12px">This is a different product with a different buyer. It is medical, not relational, and it should not be bolted onto a connection device.</p>
+      </div>
+    </div>
+
+    <div class="option">
+      <header>
+        <span class="letter">Option B</span>
+        <h3>The Mirror — measures the parent, coaches the parent</h3>
+        <p class="lede">The strongest evidence base of the three. LENA's automated adult word count, child vocalisation count and conversational turn count show fair-to-excellent agreement with manual counts, and the target is known: roughly 40 conversational turns per hour. No child-surveillance problem — the consenting adult is the one being measured.</p>
+        <span class="stamp fund">Fund · B2B2C</span>
+      </header>
+      <div class="block">
+        <h4>The complication, and it's the real one</h4>
+        <p>Across reviewed LENA-feedback studies, quantitative feedback to parents <strong>did not improve outcomes for the full sample</strong> — but each study reported improvements for families <strong>below the 50th percentile</strong>.</p>
+      </div>
+      <div class="pull warn">
+        <span class="lab">The commercial tension</span>
+        <p>The people who will buy a parenting-feedback device are overwhelmingly parents already above the median. The people it demonstrably helps are below it. That is not a product flaw — it is a distribution problem, and it determines the entire go-to-market: pediatric practices, early-intervention programmes, home-visiting services, school districts. Not direct-to-consumer.</p>
+      </div>
+      <div class="block">
+        <h4>Second risk — measurement becomes the relationship</h4>
+        <p>A parent optimising a turn-count dashboard is performing contingency rather than practising it. Mitigation: report weekly, never live. No streaks, no score, no comparison to other families — and retire a metric from the report once it stops moving.</p>
+      </div>
+    </div>
+
+    <div class="option">
+      <header>
+        <span class="letter">Option C</span>
+        <h3>The Conduit — carries something between them</h3>
+        <p class="lede">The only one of the three that directly implements the finding above: a disclosure-maximising design rather than a knowledge-extraction one. The underserved market is documented and enormous — 41.8m rural left-behind children in China, ~9m Filipino children with a migrant parent, plus divorced co-parents, shift workers and deployed military across every high-income country.</p>
+        <span class="stamp build">Build this</span>
+      </header>
+      <div class="block">
+        <h4>Why the incumbent solution underperforms</h4>
+        <p>The transnational-parenting literature finds scheduled video calls serve the parent more than the child, with children describing mediated contact as <em>justifying and prolonging</em> the absence, and the "mediated family gaze" as something they resent and negotiate around.</p>
+      </div>
+      <div class="block">
+        <h4>What's weak</h4>
+        <p>No direct evidence, because nobody has built it — the theory is strong and the empirics are absent. Hardest to demonstrate value for, hardest to price, and the buyer (parent) is not the primary beneficiary (child), which makes the pitch awkward at point of sale.</p>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Where each option lands</caption>
+        <thead><tr><th scope="col"></th><th scope="col">Product</th><th scope="col">Buyer</th><th scope="col">Legal load</th><th scope="col">Evidence</th><th scope="col">Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="v">A</td><td>Relational Monitor</td><td>Anxious parent</td><td>Extreme</td><td><strong>Against</strong></td><td><span class="mono" style="color:var(--signal)">kill</span></td></tr>
+          <tr><td class="v">A′</td><td>Health alerting</td><td>Parent of medically complex child; possibly a payer</td><td>Moderate — medical device path</td><td>Strong</td><td><span class="mono">spin out</span></td></tr>
+          <tr><td class="v">B</td><td>The Mirror</td><td>Pediatric practice, early-intervention programme</td><td>Light</td><td>Strong but targeted</td><td><span class="mono" style="color:var(--accent)">fund</span></td></tr>
+          <tr><td class="v">C</td><td>The Conduit</td><td>Distance or disconnected parent</td><td>Moderate</td><td>Theory-strong, empirics absent</td><td><span class="mono" style="color:var(--accent)">build</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col">
+      <div class="pull" style="margin-top:30px">
+        <span class="lab">The principle everything surviving shares</span>
+        <p style="font-size:1.12rem"><strong>Give the parent less information than they want, and give the child more control than they expect.</strong></p>
+        <p style="font-size:.98rem">That sentence is the product. It is also what will be hardest to hold onto under commercial pressure, because every customer conversation pushes toward more information and more parental control — toward A. Write it into the design principles now, while it costs nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">03 — Concept specs</div>
+      <h2>What gets built</h2>
+    </div>
+
+    <div class="specs">
+      <div class="spec">
+        <span class="sid">C1</span>
+        <h3>Tonight's Three Questions</h3>
+        <dl>
+          <dt>User</dt><dd>Parent of a 5–12-year-old who gets "fine" in answer to "how was school?"</dd>
+          <dt>Job</dt><dd>Give me a handle to grab so the conversation can start.</dd>
+        </dl>
+        <div class="body">
+          <p><strong>What it does.</strong> On-device topic extraction across the day. At a parent-set time, three conversation openers: <em>"Ask about the beetle." "Thursday's test came up twice." "Someone called Maya."</em></p>
+          <p><strong>What it deliberately does not do.</strong> No transcript. No quotes. No audio. No sentiment. No timeline. No search. The output is engineered to be too low-resolution to use as surveillance — you cannot reconstruct what was said, so you cannot police it, so the only way to find out is to go and ask. <strong>The information gap is the product.</strong></p>
+          <p><strong>The child's view.</strong> The child sees the same three prompts first, and can veto any of them with one tap. A vetoed topic is deleted, not flagged, and the parent is never told a veto occurred — a visible veto is itself a disclosure, which would make the veto unusable.</p>
+          <p><strong>Why the veto doesn't gut it.</strong> The objective is voluntary disclosure. A child who controls the channel uses it; a child who doesn't, routes around it. Vetoes are a health metric, not a leak: a rising veto rate is the product telling you trust is falling.</p>
+        </div>
+      </div>
+
+      <div class="spec">
+        <span class="sid">C2</span>
+        <h3>The Asynchronous Mailbox</h3>
+        <dl>
+          <dt>User</dt><dd>A parent separated by migration, shift work, deployment, custody or incarceration.</dd>
+          <dt>Job</dt><dd>Let me be in my child's daily life without either of us having to perform.</dd>
+        </dl>
+        <div class="body">
+          <p><strong>The insight.</strong> The scheduled video call is close to the worst possible format for a child: a performance, under observation, on the adult's schedule, often with a grandparent prompting them to "say hello to Daddy." That is precisely the dynamic the research finds children resenting.</p>
+          <p><strong>What it does.</strong> A physical object — a handset, not a screen — that the child talks into whenever they want. The parent receives it whenever they can and sends one back. Asynchrony is the feature: it fits time zones and night shifts, and it removes the performance. There is <strong>no live mode</strong>, on purpose.</p>
+          <p><strong>The inversion that matters.</strong> The child initiates. No parental "record now" command exists. This moves the channel from parental solicitation — which the longitudinal data says predicts nothing — to child disclosure, which predicts everything.</p>
+          <p><strong>The third node.</strong> The grandparent gets their own identity on the device, not a monitored role. 96% of Chinese children whose parents both migrate are raised by grandparents; 77.7% of urban Chinese families have grandparents caring for under-3s; 2.1m US grandparents are primary caregivers and ageing — 59.5% are 60+, up from 47% in 2012. Every product in this space treats this person as invisible or as a subject. Nobody has built for them.</p>
+        </div>
+      </div>
+
+      <div class="spec">
+        <span class="sid">C3</span>
+        <h3>The Relationship Mirror</h3>
+        <dl>
+          <dt>User</dt><dd>Initially a clinician or home-visiting programme; eventually a below-median-input family reached through them.</dd>
+          <dt>Job</dt><dd>Show me what I'm actually doing, not what I think I'm doing.</dd>
+        </dl>
+        <div class="body">
+          <p>Every metric is a measure of <strong>the parent</strong>.</p>
+        </div>
+        <div class="tablewrap" style="margin-top:16px">
+          <table>
+            <thead><tr><th scope="col">Metric</th><th scope="col">Why it's there</th></tr></thead>
+            <tbody>
+              <tr><td>Conversational turns per hour</td><td>The validated active ingredient; ~40/hr benchmark</td></tr>
+              <tr><td>Turn distribution across the day</td><td>Reveals the 6pm collapse most parents can't see</td></tr>
+              <tr><td><strong>Wait-time</strong> — the pause after the child speaks, before the adult fills it</td><td>Directly coachable, high-leverage, and invisible to self-report</td></tr>
+              <tr><td>Technoference — phone in hand during conversation</td><td>Self-measured; the mechanism is lost contingency, not lost time</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="constraints">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">04 — Constraints</div>
+      <h2>What the law forces the architecture to be</h2>
+    </div>
+
+    <div class="col">
+      <h3 style="margin-top:0">All-party consent is criminal law, not terms of service</h3>
+      <p>The federal Wiretap Act (18 U.S.C. § 2511) sets a <strong>one-party</strong> consent baseline but <strong>does not preempt stricter state law</strong>.</p>
+      <p><strong>All-party consent states:</strong> California, Connecticut, Florida, Illinois, Maryland, Massachusetts, Montana, New Hampshire, Pennsylvania and Washington — with Delaware and Nevada added by some authorities. Nevada's statute reads as one-party but its Supreme Court has interpreted it as all-party; Illinois's original statute was struck down in 2014 and immediately replaced with a near-identical one. For recordings spanning states, the strictest standard applies.</p>
+      <div class="pull warn">
+        <span class="lab">The unsolvable version</span>
+        <p>Your child speaks to other children, teachers and neighbours. You cannot obtain consent from their parents. No consent flow fixes this. The only thing that fixes it is <strong>not creating a recording</strong>.</p>
+      </div>
+
+      <h3>COPPA, and the narrow door through it</h3>
+      <p>The 2013 Rule amendments added <strong>an audio file containing a child's voice</strong> to the definition of personal information. A 2017 FTC enforcement policy statement created a carve-out, codified in the 2025 Rule amendments — published in the Federal Register on 22 April 2025, effective 23 June 2025, compliance date 22 April 2026, so already in force.</p>
+      <p>The carve-out is genuinely narrow. The FTC will decline enforcement only where the operator:</p>
+      <ol class="plain">
+        <li>collects the voice file <strong>solely as a replacement for written words</strong> — a search, a verbal instruction or request;</li>
+        <li>uses it for <strong>nothing else</strong> — no behavioural targeting, no identification — before deleting it;</li>
+        <li>retains it <strong>only as long as needed</strong> to execute the instruction, then deletes immediately;</li>
+        <li><strong>discloses</strong> the collection, use and deletion policy in the privacy policy.</li>
+      </ol>
+      <p style="margin-top:15px">It does not apply where the operator requests personal information such as the child's name. Separately, the amended Rule bars retaining children's personal information longer than necessary for the specific documented purpose.</p>
+      <div class="pull warn">
+        <span class="lab">The pivotal legal question</span>
+        <p>The carve-out covers voice-as-text-input. It does <strong>not</strong> obviously cover "listen ambiently all day and extract topics." Whether ambient feature extraction without retention constitutes "collection" at all decides whether C1 is a product or a lawsuit — and it needs a real opinion from counsel, not an inference from this brief.</p>
+      </div>
+    </div>
+
+    <figure>
+      <div class="figscroll">
+        <svg class="dgm" viewBox="0 0 760 330" role="img" aria-label="Diagram comparing two data paths. In the incumbent architecture raw audio crosses the device boundary to cloud storage and the parent receives quotes. In the proposed architecture audio is destroyed on device within two seconds, only three topics cross the boundary, and no cloud storage component exists.">
+          <defs>
+            <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"></path>
+            </marker>
+          </defs>
+
+          <line x1="400" y1="14" x2="400" y2="300" stroke="var(--rule-strong)" stroke-width="1.5" stroke-dasharray="6 5"></line>
+          <text class="lbl-mut" x="400" y="318" text-anchor="middle">device boundary</text>
+
+          <text class="lbl-mut" x="24" y="26">INCUMBENT</text>
+          <rect class="bx" x="24" y="40" width="104" height="50"></rect>
+          <text class="lbl-sm" x="76" y="70" text-anchor="middle">capture</text>
+          <path class="edge" d="M 130 65 L 172 65" marker-end="url(#ah2)"></path>
+          <rect class="bx" x="176" y="40" width="136" height="50"></rect>
+          <text class="lbl-sm" x="244" y="63" text-anchor="middle">buffer</text>
+          <text class="lbl-sm" x="244" y="79" text-anchor="middle">+ upload</text>
+          <path class="edge-sig" d="M 314 65 L 454 65" marker-end="url(#ah2)"></path>
+          <text class="t-sig" x="384" y="55" text-anchor="middle">raw audio</text>
+          <rect class="bx" x="458" y="40" width="150" height="50"></rect>
+          <text class="lbl-sm" x="533" y="63" text-anchor="middle">cloud transcript</text>
+          <text class="lbl-sm" x="533" y="79" text-anchor="middle">stored</text>
+          <path class="edge" d="M 610 65 L 632 65" marker-end="url(#ah2)"></path>
+          <rect class="bx" x="636" y="40" width="100" height="50"></rect>
+          <text class="lbl-sm" x="686" y="63" text-anchor="middle">parent sees</text>
+          <text class="lbl-sm" x="686" y="79" text-anchor="middle">quotes</text>
+
+          <text class="lbl-mut" x="24" y="176">PROPOSED</text>
+          <rect class="bx" x="24" y="190" width="104" height="60"></rect>
+          <text class="lbl-sm" x="76" y="225" text-anchor="middle">capture</text>
+          <path class="edge" d="M 130 220 L 172 220" marker-end="url(#ah2)"></path>
+          <rect class="bx-acc" x="176" y="190" width="136" height="60"></rect>
+          <text class="lbl-sm" x="244" y="208" text-anchor="middle">on-device</text>
+          <text class="lbl-sm" x="244" y="224" text-anchor="middle">features &rarr;</text>
+          <text class="lbl-sm" x="244" y="240" text-anchor="middle">audio destroyed &lt;2s</text>
+
+          <rect class="bx-ghost" x="458" y="258" width="150" height="44"></rect>
+          <text class="lbl-mut" x="533" y="276" text-anchor="middle">no cloud audio</text>
+          <text class="lbl-mut" x="533" y="292" text-anchor="middle">nothing stored</text>
+
+          <path class="edge-acc" d="M 314 220 L 632 220" marker-end="url(#ah2)"></path>
+          <text class="t-acc" x="400" y="210" text-anchor="middle">3 topics only</text>
+          <rect class="bx-acc" x="636" y="190" width="100" height="60"></rect>
+          <text class="lbl-sm" x="686" y="215" text-anchor="middle">parent sees</text>
+          <text class="lbl-sm" x="686" y="231" text-anchor="middle">3 questions</text>
+        </svg>
+      </div>
+      <p class="scrollhint">scroll the diagram sideways to see it in full &rarr;</p>
+      <figcaption><b>The edge that has to disappear.</b> Every incumbent in the category moves raw audio across the device boundary and stores it. Removing that one arrow is simultaneously the legal answer, the trust answer, and the differentiation — and it deletes the cloud storage component entirely rather than securing it.</figcaption>
+    </figure>
+
+    <div class="col">
+      <p style="margin-top:26px">"The audio never leaves the device and is destroyed within seconds" is a claim no cloud-based incumbent can make, and it is verifiable by a third-party audit you should commission and publish.</p>
+      <p><strong>One corollary.</strong> Derived features are themselves personal information about a child. "Topics my nine-year-old discussed today" is sensitive even with no audio attached — minimise it, expire it on a short clock, and keep it on-device wherever the product allows.</p>
+
+      <h3>The consent ladder</h3>
+      <p>A four-year-old and a fourteen-year-old are not the same product.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="rung"><span class="age">0–3</span><span class="rule-txt">Parent-controlled. Effectively a language-environment instrument; no autonomy issue.</span></div>
+      <div class="rung"><span class="age">4–7</span><span class="rule-txt">The child knows it exists, and has an off button <strong>that actually works</strong>.</span></div>
+      <div class="rung"><span class="age">8–12</span><span class="rule-txt">The child sees exactly what the parent sees. Co-review is the default interaction.</span></div>
+      <div class="rung"><span class="age">13+</span><span class="rule-txt">The child controls it entirely, or you do not ship to them.</span></div>
+    </div>
+
+    <div class="col">
+      <p style="margin-top:22px">Disclosure declines and secrecy rises normatively through adolescence. A product that fights that curve with surveillance loses — and the evidence says it loses <em>knowledge</em>, not just goodwill.</p>
+      <div class="pull warn">
+        <p style="font-size:1.06rem"><strong>If the off button is fake, the product is a lie with a discovery date attached.</strong></p>
+      </div>
+
+      <h3>Consider not putting it on the child</h3>
+      <p>Wearing it imports school recording bans, loss and breakage, battery anxiety, and real peer stigma. Two alternatives:</p>
+      <p><strong>The car.</strong> The highest-density parent–child conversation space left in modern family life: captive, recurring, and <em>side-by-side</em> — no eye contact, which lowers the stakes for children raising hard subjects. It sidesteps school policy entirely, narrows third-party consent to mostly family members, and the parent is present, so the device can prompt in the moment rather than reporting after the fact.</p>
+      <p><strong>Bedtime.</strong> 90% of parents have a routine and 67% include a story — but only <strong>23% include talking about the day</strong>. A specific, measured, device-shaped gap.</p>
+    </div>
+  </div>
+</section>
+
+<section id="prototype">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">05 — Prototype plan</div>
+      <h2>Build no hardware for six months</h2>
+    </div>
+
+    <div class="col">
+      <div class="pull warn">
+        <span class="lab">The rule that governs every test</span>
+        <p style="font-size:1.12rem"><strong>The primary endpoint must be child-reported. Never parent-reported.</strong></p>
+        <p style="font-size:.98rem">The transnational research guarantees the parent's experience improves under almost any intervention in this category — that is the documented failure mode, not a success signal. If you measure parent satisfaction you will get a false positive on all three concepts. Child-reported felt-closeness, child-initiated contact rate, and child-reported sense of being listened to are the real endpoints. Build that instrument before you build anything else.</p>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Five experiments, no hardware</caption>
+        <thead><tr><th scope="col"></th><th scope="col">Test</th><th scope="col">Method</th><th scope="col">Cost</th><th scope="col">Falsifiable claim</th></tr></thead>
+        <tbody>
+          <tr><td class="v">1</td><td>Three Questions</td><td>Wizard-of-Oz. 20 families, 2 weeks. A human listens to a voluntary end-of-day child voice note and writes three openers. No device, no ML.</td><td class="v">days</td><td>Do dinner conversations get longer, and does the <em>child</em> report feeling more listened to, against a control given generic prompts?</td></tr>
+          <tr><td class="v">2</td><td>Async vs. scheduled</td><td>Diary study. Distance-parent families alternate two weeks of scheduled video calls with two weeks of async voice notes.</td><td class="v">days</td><td>Does <strong>child-initiated</strong> contact rise under asynchrony? Does child-reported closeness?</td></tr>
+          <tr><td class="v">3</td><td>The Mirror</td><td>Phone-only. On-device turn counting, weekly report. Recruit deliberately <strong>below median</strong> through a partner clinic.</td><td class="v">weeks</td><td>Does turn count rise in below-median families, replicating the LENA subgroup result — and does it fail to rise above median, as predicted?</td></tr>
+          <tr><td class="v">4</td><td>Veto rate</td><td>Instrument test 1.</td><td class="v">free</td><td>What fraction of topics do children veto, and does the rate rise or fall over two weeks? Rising means trust falling. Your best leading indicator.</td></tr>
+          <tr><td class="v">5</td><td>Health alerting</td><td>Partner an existing cough-analysis API rather than build. Asthmatic children, parent-held phone.</td><td class="v">weeks</td><td>Does exacerbation pre-warning change care-seeking? Note this is a <strong>medical device regulatory path</strong> — scope it before, not after.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col">
+      <p style="margin-top:24px">Test 1 is the highest-information, lowest-cost experiment in the set and needs nothing but a spreadsheet, consent forms, and someone willing to listen to voice notes for two weeks.</p>
+
+      <h3>What would make you stop</h3>
+      <ul class="plain">
+        <li><strong>Test 1:</strong> conversation length rises but <em>child-reported</em> closeness doesn't → you built a parent-satisfaction product. Stop.</li>
+        <li><strong>Test 4:</strong> veto rate climbing → children experience it as surveillance despite the design. Stop and redesign; don't ship with the veto button as an excuse.</li>
+        <li><strong>Test 3:</strong> no effect below median → the Mirror's one supporting result failed to replicate, and the commercial story was already hard. Stop.</li>
+        <li><strong>Any test</strong> where a child asks whether their parent can hear what they said → the framing is already lost. The answer has to be obviously, checkably <em>no</em>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">06 — Open questions</div>
+      <h2>What this brief can't settle</h2>
+    </div>
+    <div class="col">
+      <ol class="plain">
+        <li><strong>The legal pivot.</strong> Does on-device ambient feature extraction with sub-second audio destruction constitute "collection" under COPPA? This determines whether C1 is a product or a lawsuit. Needs counsel.</li>
+        <li><strong>Who pays for C2?</strong> The buyer is not the beneficiary, and the highest-need users — migrant workers sending remittances — are least able to pay. Employer-paid? Telecom-bundled? Remittance-operator-bundled? That last one deserves serious thought: the money already flows along exactly the same corridor as the separation.</li>
+        <li><strong>Does the Mirror survive contact with an above-median parent?</strong> The evidence predicts no effect. Is a no-effect product still viable if it is <em>felt</em> to work — and do you want to sell that?</li>
+        <li><strong>The grandparent as customer.</strong> Is the third node a user, a buyer, or both? Nobody has tested willingness to pay, because nobody has asked.</li>
+        <li><strong>What is the failure mode at scale?</strong> Every one of these becomes a surveillance product if a single feature request is granted. Which specific request is the point of no return, and can it be made architecturally impossible rather than merely declined?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This brief argues against the most commercially obvious version of the product. That position is derived from the monitoring literature and the detection-readiness evidence, not from caution — the Monitor is rejected because it does not work, not because it is uncomfortable. Demographic and time-use figures are sourced in the companion review of parental employment, grandparent caregiving and parent–child contact. Several primary-source domains were unreachable from the compiling environment; those figures were retrieved through search indexes of the same documents.</p>
+  </div>
+</footer>
