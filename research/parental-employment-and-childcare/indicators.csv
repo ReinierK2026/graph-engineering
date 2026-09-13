@@ -1,0 +1,172 @@
+part,topic,geography,indicator,value,unit,reference_year,source,confidence
+1,parental_employment,OECD average,Children in couple households with both parents working full-time,47,percent,2022,OECD Family Database LMF2.2,high
+1,parental_employment,OECD average,Children in couple households in one-and-a-half-earner households,16,percent,2022,OECD Family Database LMF2.2,high
+1,parental_employment,OECD average,Children in couple households that are jobless,5,percent,2022,OECD Family Database LMF1.1,high
+1,parental_employment,OECD average,Children in single-parent households that are jobless,30,percent,2022,OECD Family Database LMF1.1,high
+1,parental_employment,Ireland,Children in single-parent jobless households,41.5,percent,2022,OECD Family Database LMF1.1,moderate
+1,parental_employment,Turkiye,Children in single-parent jobless households,63,percent,2022,OECD Family Database LMF1.1,moderate
+1,parental_employment,Finland,Full-time dual-earner couples when youngest child aged 0-2,35,percent,2022,OECD Family Database LMF2.2,high
+1,parental_employment,Finland,Full-time dual-earner couples when youngest child aged 6,56,percent,2022,OECD Family Database LMF2.2,high
+1,parental_employment,OECD average,Employed fathers in couples working 45+ hours per week,23,percent,2022,OECD Family Database LMF2.1,high
+1,parental_employment,OECD average,Employed mothers in couples working 45+ hours per week,10,percent,2022,OECD Family Database LMF2.1,high
+1,parental_employment,European Union,Households with dependent children where all adults are employed,61.3,percent,2025,Eurostat EU-LFS,high
+1,parental_employment,European Union,Households with dependent children where all adults work full-time,41.5,percent,2025,Eurostat EU-LFS,high
+1,parental_employment,European Union,Households with dependent children where no adults work,13.8,percent,2025,Eurostat EU-LFS,high
+1,parental_employment,European Union,Households with children that are couples with children,63.5,percent,2024,Eurostat,high
+1,parental_employment,European Union,Households with children that are single-parent,12.7,percent,2024,Eurostat,high
+1,parental_employment,United States,Opposite-sex couples with children under 18 with both parents working full-time,31,percent,1975,Pew Research Center / CPS,high
+1,parental_employment,United States,Opposite-sex couples with children under 18 with both parents working full-time,46,percent,2015,Pew Research Center / CPS,high
+1,parental_employment,United States,Opposite-sex couples with children under 18 with both parents working full-time,52,percent,2025,Pew Research Center / CPS,high
+1,parental_employment,United States,Two-parent homes with breadwinner father and homemaker mother,46,percent,1970,Pew Research Center / CPS,high
+1,parental_employment,Global,Female labour force participation rate (15+),48.8,percent,2025,ILO modelled estimates,high
+1,parental_employment,Global,Female labour force participation rate (15+),50.7,percent,2005,ILO modelled estimates,high
+1,parental_employment,Global,Gender gap in labour force participation,24.1,percentage_points,2025,ILO modelled estimates,high
+1,parental_employment,Global,Women's share of the global labour force,40.2,percent,2025,ILO modelled estimates,high
+1,parental_employment,Upper-middle-income countries,Motherhood employment penalty ratio,19.8,percent,2024,ILO,moderate
+1,parental_employment,High-income countries,Motherhood employment penalty ratio,13.2,percent,2024,ILO,moderate
+1,parental_employment,Low-income countries,Motherhood employment penalty ratio,5.4,percent,2024,ILO,moderate
+1,parental_employment,Lower-middle-income countries,Motherhood employment penalty ratio,4.3,percent,2024,ILO,moderate
+1,parental_employment,OECD average,Maternal employment rate youngest child under 3,60,percent,2023,OECD Education at a Glance 2023,high
+1,parental_employment,OECD average,Recent mothers (youngest 0-2) employed,64,percent,2022,OECD Family Database LMF1.2,high
+1,parental_employment,OECD average,Recent mothers employed and not absent on leave,45,percent,2022,OECD Family Database LMF1.2,high
+1,parental_employment,South Asia,Employed women in informal work,95,percent,2017,UN Women,moderate
+1,parental_employment,Sub-Saharan Africa,Employed women in informal work,89,percent,2017,UN Women,moderate
+1,parental_employment,Global,Working women who are informal workers without employment or maternity protection,60,percent,2017,UN Women,moderate
+1,parental_employment,OECD average,People in jobless households with children in relative income poverty,65.8,percent,2022,OECD Family Database,high
+1,parental_employment,OECD average,People in working households with children in relative income poverty,8.3,percent,2022,OECD Family Database,high
+1,parental_employment,United States,Children living with one parent and no other adults,23,percent,2019,Pew Research Center (130 countries),high
+1,parental_employment,Global,Children living with one parent and no other adults,7,percent,2019,Pew Research Center (130 countries),moderate
+2,grandparent_care,Global,People living in extended-family households,38,percent,2019,Pew Research Center (130 countries),moderate
+2,grandparent_care,Global,Children living with relatives beyond the nuclear family,38,percent,2019,Pew Research Center,moderate
+2,grandparent_care,United States,Children living with relatives beyond the nuclear family,8,percent,2019,Pew Research Center,high
+2,grandparent_care,LMIC average (DHS),Children under 15 in skip-generation households (earliest survey),1.7,percent,~1995,DHS cross-country average,moderate
+2,grandparent_care,LMIC average (DHS),Children under 15 in skip-generation households (most recent survey),2.4,percent,~2018,DHS cross-country average,moderate
+2,grandparent_care,LMIC average (DHS),Adults 60+ in skip-generation households (earliest),5.4,percent,~1995,DHS cross-country average,moderate
+2,grandparent_care,LMIC average (DHS),Adults 60+ in skip-generation households (most recent),6.7,percent,~2018,DHS cross-country average,moderate
+2,grandparent_care,"Lesotho, Malawi, Rwanda, Uganda, Zambia",Older persons living in skip-generation households,30,percent_minimum,2019,UN DESA (93 countries),moderate
+2,grandparent_care,Cambodia and Philippines,Persons 60+ living in skip-generation households,10,percent_minimum,2019,UN DESA,moderate
+2,grandparent_care,United States,Children under 18 living in a grandparent's home,8.4,percent,2020,US Census Bureau,high
+2,grandparent_care,United States,Children under 18 living in a grandparent's home,6100000,count,2020,US Census Bureau,high
+2,grandparent_care,United States,Children in three-generation households,5.7,percent,1996,US Census analysis,moderate
+2,grandparent_care,United States,Children in three-generation households,9.8,percent,2016,US Census analysis,moderate
+2,grandparent_care,United States,Grandparents living with a grandchild under 18,6700000,count,2021,US Census ACS,high
+2,grandparent_care,United States,Grandparents responsible for grandchild's basic care,2100000,count,2021,US Census ACS,high
+2,grandparent_care,United States,Share of co-resident grandparents who are responsible for care,32.7,percent,2021,US Census ACS,high
+2,grandparent_care,United States,Responsible grandparents aged 60+,59.5,percent,2021,US Census ACS,high
+2,grandparent_care,United States,Responsible grandparents aged 60+,47,percent,2012,US Census ACS,high
+2,grandparent_care,South Africa,Multi-generational (3-generation) households,13.9,percent,2023,Stats SA General Household Survey,high
+2,grandparent_care,South Africa,Skip-generation households,4.2,percent,2023,Stats SA General Household Survey,high
+2,grandparent_care,South Africa,Grandparents co-resident with children aged 0-17,6700000,count,2023,Stats SA,high
+2,grandparent_care,South Africa,Children aged 0-17 co-resident with grandparents,9700000,count,2023,Stats SA,high
+2,grandparent_care,South Africa,Children living with neither biological parent,18.8,percent,2024,Stats SA General Household Survey,high
+2,grandparent_care,South Africa,Children living with neither biological parent,19.5,percent,2022,Stats SA General Household Survey,high
+2,grandparent_care,South Africa,Children aged 0-4 living with both biological parents,36,percent,2022,Stats SA,high
+2,grandparent_care,Sub-Saharan Africa (40 countries),Children under 15 living with neither parent,11.9,percent,1997-2002,DHS,moderate
+2,grandparent_care,Sub-Saharan Africa (40 countries),Children under 15 with neither parent but both parents alive,8.6,percent,1997-2002,DHS,moderate
+2,grandparent_care,Sub-Saharan Africa (40 countries),Children under 15 who are double orphans,0.9,percent,1997-2002,DHS,moderate
+2,grandparent_care,Mali,Children not living with either parent (low end of SSA range),8,percent,2000s,DHS,moderate
+2,grandparent_care,Eswatini,Children not living with either parent (high end of SSA range),30,percent,2000s,DHS,moderate
+2,grandparent_care,Uganda,Children aged 0-14 not living with biological parents,17,percent,2011,National household data,moderate
+2,grandparent_care,Uganda,Share of those children in informal kinship care,97,percent,2011,National household data,moderate
+2,grandparent_care,Lao PDR,Children aged 0-17 living with neither biological parent,7.5,percent,2010s,UNICEF,moderate
+2,grandparent_care,China,Rural left-behind children (2020 census),41800000,count,2020,China national census,moderate
+2,grandparent_care,China,Rural left-behind children (narrow official definition),11992000,count,2021,Chinese government,moderate
+2,grandparent_care,China,Left-behind children (broad academic estimate),68800000,count,2020s,Academic literature,low
+2,grandparent_care,China,Left-behind children cared for by grandparents when both parents migrate,96,percent,2020s,Academic literature,moderate
+2,grandparent_care,China,Left-behind children cared for by grandparents or no one when both parents away,7000000,count,2018,Academic literature,low
+2,grandparent_care,Cambodia,Left-behind children living with grandparents,80,percent,2010s,Academic literature,low
+2,grandparent_care,Philippines,Children with at least one migrant parent,9000000,count,2010s,Academic literature,low
+2,grandparent_care,Philippines,Children left behind,27,percent,2010s,Academic literature,low
+2,grandparent_care,Ecuador,Children left behind,36,percent,2010s,Academic literature,low
+2,grandparent_care,Rural South Africa,Children left behind,40,percent_minimum,2010s,Academic literature,low
+2,grandparent_care,Europe (SHARE),Grandparents providing regular childcare support,40,percent_minimum,2019-2020,SHARE waves 1/2/8,high
+2,grandparent_care,Europe (SHARE),Cross-country range of grandparents providing any childcare (low),24,percent,2019-2020,SHARE,high
+2,grandparent_care,Europe (SHARE),Cross-country range of grandparents providing any childcare (high),60,percent,2019-2020,SHARE,high
+2,grandparent_care,"Denmark, Sweden, Netherlands, France",Grandparents providing any childcare,60,percent,2019-2020,SHARE,high
+2,grandparent_care,Southern Europe,Grandparents providing any childcare,50,percent_maximum,2019-2020,SHARE,high
+2,grandparent_care,Europe (11 countries),Grandmothers who cared for a grandchild under 15 in the parents' absence in past year,58,percent,2010s,SHARE,moderate
+2,grandparent_care,Europe,Grandmothers caring frequently or sporadically,44,percent,2010s,SHARE,moderate
+2,grandparent_care,Europe,Grandfathers caring frequently or sporadically,42,percent,2010s,SHARE,moderate
+2,grandparent_care,United Kingdom,Grandparents who cared for a grandchild under 16 in the past 12 months,63,percent,2010s,UK survey data,moderate
+2,grandparent_care,United States,Working parents relying on grandparent childcare (range low),40,percent,2020s,Survey data,low
+2,grandparent_care,United States,Working parents relying on grandparent childcare (range high),60,percent,2020s,Survey data,low
+2,grandparent_care,United States,Working parents relying on grandmothers for childcare,42,percent,2020s,Harris Poll,moderate
+2,grandparent_care,China (urban),Families where grandparents are involved in caring for children under 3,77.7,percent,2019,National Health Commission,moderate
+2,grandparent_care,China (Shanghai),Grandparents who are the primary caregiver,73.4,percent,2014,Shanghai Scientific Parenting Base,low
+2,grandparent_care,United States (Latino children),Children living with a grandparent,13,percent,2020s,Hispanic Research Center,moderate
+2,grandparent_care,United States (Latino children),Children living with a grandparent and no parent,1.6,percent,2020s,Hispanic Research Center,moderate
+2,grandparent_care,OECD average,Children under 3 enrolled in formal ECEC,29,percent,2023,OECD Education at a Glance 2025,high
+2,grandparent_care,OECD average,Children under 2 enrolled in formal ECEC,21,percent,2023,OECD Education at a Glance 2025,high
+2,grandparent_care,OECD average,Two-year-olds enrolled in formal ECEC,52,percent,2023,OECD Education at a Glance 2025,high
+2,grandparent_care,OECD average,Three-year-olds enrolled in formal ECEC,79,percent,2023,OECD Education at a Glance 2025,high
+2,grandparent_care,OECD average,Four-year-olds enrolled in formal ECEC,90,percent,2023,OECD Education at a Glance 2025,high
+3,parent_child_time,11 Western countries,Mothers' childcare time,54,minutes_per_day,1965,Dotti Sani & Treas 2016 (JMF),high
+3,parent_child_time,11 Western countries,Mothers' childcare time,104,minutes_per_day,2012,Dotti Sani & Treas 2016 (JMF),high
+3,parent_child_time,11 Western countries,Fathers' childcare time,16,minutes_per_day,1965,Dotti Sani & Treas 2016 (JMF),high
+3,parent_child_time,11 Western countries,Fathers' childcare time,59,minutes_per_day,2012,Dotti Sani & Treas 2016 (JMF),high
+3,parent_child_time,United States,Fathers' time with children,2.5,hours_per_week,1965,Pew / ATUS,high
+3,parent_child_time,United States,Fathers' time with children,7.3,hours_per_week,2011,Pew / ATUS,high
+3,parent_child_time,United States,Ratio of fathers' to mothers' childcare time (full-time employed),0.36,ratio,1960s,Bianchi et al.,moderate
+3,parent_child_time,United States,Ratio of fathers' to mothers' childcare time (full-time employed),0.53,ratio,1990s,Bianchi et al.,moderate
+3,parent_child_time,South Korea,Fathers' childcare time,25,minutes_per_day_maximum,1999,Korean time-use survey,moderate
+3,parent_child_time,South Korea,Fathers' childcare time,60,minutes_per_day,2014,Korean time-use survey,moderate
+3,parent_child_time,South Korea,Mothers' childcare time,130,minutes_per_day,1999,Korean time-use survey,moderate
+3,parent_child_time,South Korea,Mothers' childcare time,200,minutes_per_day_minimum,2014,Korean time-use survey,moderate
+3,parent_child_time,United States,Women's primary childcare (household with child under 6),2.8,hours_per_day,2024,BLS ATUS,high
+3,parent_child_time,United States,Men's primary childcare (household with child under 6),1.7,hours_per_day,2024,BLS ATUS,high
+3,parent_child_time,United States,Primary childcare when youngest child is 6-17,47,minutes_per_day,2024,BLS ATUS,high
+3,parent_child_time,United States,Mothers' physical care of children under 6,1.3,hours_per_day,2024,BLS ATUS,high
+3,parent_child_time,United States,Fathers' physical care of children under 6,38,minutes_per_day,2024,BLS ATUS,high
+3,parent_child_time,United States,Non-employed adults' childcare (child under 6),3.3,hours_per_day_minimum,2024,BLS ATUS,high
+3,parent_child_time,United States,Employed adults' childcare (child under 6),1.7,hours_per_day,2024,BLS ATUS,high
+3,parent_child_time,United States,Mothers' secondary childcare (youngest 5-12),5.8,hours_per_day,2019,BLS ATUS,high
+3,parent_child_time,United States,Mothers' secondary childcare (youngest 5-12),8.2,hours_per_day,2020,BLS ATUS,high
+3,parent_child_time,United States,Fathers' secondary childcare (children 12 or under),4.5,hours_per_day,2019,BLS ATUS,high
+3,parent_child_time,United States,Fathers' secondary childcare (children 12 or under),5.3,hours_per_day,2020,BLS ATUS,high
+3,parent_child_time,OECD average,Fathers' total childcare time,42,minutes_per_day,2010s,OECD Family Database LMF2.5,moderate
+3,parent_child_time,OECD average,Mothers' total childcare time,100,minutes_per_day,2010s,OECD Family Database LMF2.5,moderate
+3,parent_child_time,Global,Men's share of time spent on unpaid work,45,percent,2023,State of the World's Fathers 2023,moderate
+3,parent_child_time,Global,Women's share of time spent on unpaid work,55,percent,2023,State of the World's Fathers 2023,moderate
+3,parent_child_time,Global,Years to equality in unpaid care work at current pace,92,years,2023,State of the World's Fathers 2023,low
+3,parent_child_time,Global,Estimated annual value of unpaid care work,11000000000000,usd,2023,State of the World's Fathers 2023,low
+3,education_gradient,United States,Developmental childcare - mothers with high school or less,65,minutes_per_day,2008-2013,ATUS analysis,moderate
+3,education_gradient,United States,Developmental childcare - college-educated mothers,80,minutes_per_day,2008-2013,ATUS analysis,moderate
+3,education_gradient,United States,Increase in childcare time - less-educated mothers,4,hours_per_week,1965-2010s,ATUS analysis,moderate
+3,education_gradient,United States,Increase in childcare time - college-educated mothers,9,hours_per_week,1965-2010s,ATUS analysis,moderate
+3,education_gradient,United States,Annual gap in direct parental engagement by parental education,300,hours_per_year,2010s,ATUS analysis,moderate
+3,language,United States,Hart & Risley word gap by age 3,30000000,words,1995,Hart & Risley,low
+3,language,United States (Denver),Replicated word gap by age 4 (329 families),4000000,words,2010s,LENA replication study,moderate
+3,language,Australia,Advantage in adult word count/vocalisations/turns by 18 months for more-educated families,0.6,standard_deviations,2020,Australian cohort study,moderate
+3,ritual,United States,Parents with children under 18 eating dinner together 6-7 nights per week,53,percent,2013,Gallup,high
+3,ritual,United States,Families eating dinner together all seven nights,36.5,percent,1997-2013,Gallup,high
+3,ritual,United States,Households with 7+ family meals per week,49.6,percent,2007-2010,NHANES,high
+3,ritual,United States,Households with 3-6 family meals per week,32.4,percent,2007-2010,NHANES,high
+3,ritual,United States,Households with 0-2 family meals per week,18.0,percent,2007-2010,NHANES,high
+3,ritual,United States,Parents of children 0-4 reading to them frequently,41,percent,2020s,Survey data,moderate
+3,ritual,United States,Parents of children 0-4 reading to them frequently (13 years earlier),64,percent,2010s,Survey data,moderate
+3,ritual,United States,Girls aged 0-4 read to every or nearly every day,44,percent,2020s,Survey data,moderate
+3,ritual,United States,Boys aged 0-4 read to every or nearly every day,29,percent,2020s,Survey data,moderate
+3,ritual,United States,Parents reporting a bedtime routine,90,percent,2010s,Pediatric survey,moderate
+3,ritual,United States,Bedtime routines that include reading a story,67,percent,2010s,Pediatric survey,moderate
+3,ritual,United States,Bedtime routines that include talking about their day,23,percent,2010s,Pediatric survey,moderate
+3,ritual,United States,Bedtime routines that include turning off devices,41,percent,2010s,Pediatric survey,moderate
+3,technoference,United States,Parents who feel distracted by their smartphone when with their children,68,percent,2010s,Survey data,low
+3,technoference,United States,Parents who used their smartphone in a fast-food restaurant with children,73,percent,2010s,Survey data,low
+3,technoference,United States,Parents on their phone at least 1 in every 5 minutes at the playground,35,percent,2010s,Survey data,low
+3,technoference,United States,Mothers of infants using screens during daily feedings,92,percent,2010s,Survey data,low
+3,technoference,United States,Mothers often texting or using apps during infant feeding,37,percent,2010s,Survey data,low
+3,technoference,United States,Mothers reporting technology interrupting playtime at least sometimes,65,percent,2010s,Survey data,low
+3,technoference,United States,Mothers reporting technology interrupting book reading at least sometimes,36,percent,2010s,Survey data,low
+3,technoference,United States,Mothers reporting technology interrupting mealtime at least sometimes,26,percent,2010s,Survey data,low
+3,technoference,United States,Mothers reporting technology interrupting bedtime at least sometimes,26,percent,2010s,Survey data,low
+3,technoference,United States,Mothers reporting technology interrupting discipline at least sometimes,22,percent,2010s,Survey data,low
+3,technoference,United States,Parents who say they spend too much time on their smartphone,47,percent,2023,Pew Research Center,high
+3,global_stimulation,Global,Children aged 2-4 not getting enough responsive interaction or stimulation at home,40,percent,2020s,UNICEF MICS,moderate
+3,global_stimulation,Global,Children missing out on reading/storytelling/singing/drawing with caregivers,10,percent,2020s,UNICEF MICS,moderate
+3,global_stimulation,Global,Children aged 2-4 who do not play with caregivers at home,80000000,count,2020s,UNICEF,moderate
+3,global_stimulation,Global,Children under 5 without adequate learning materials at home,90000000,count,2020s,UNICEF,moderate
+3,global_stimulation,74 countries,Children aged 3-4 whose fathers do not engage in early learning with them,40000000,count,2010s,UNICEF MICS,moderate
+3,global_stimulation,LMICs,Mothers providing high levels of stimulation,39.8,percent,2020,PLOS One MICS analysis,moderate
+3,global_stimulation,LMICs,Other adult caregivers providing high levels of stimulation,20.7,percent,2020,PLOS One MICS analysis,moderate
+3,global_stimulation,LMICs,Fathers providing high levels of stimulation,11.9,percent,2020,PLOS One MICS analysis,moderate
+3,mediated_contact,Transnational families,Carers and young adult children using social media/internet apps as main communication,60,percent_minimum,2010s,Philippines studies,low
