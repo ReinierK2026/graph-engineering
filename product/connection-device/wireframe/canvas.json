@@ -1,6 +1,6 @@
 {
   "artboards": [
-    { "file": "Object.dc.html", "title": "The object", "x": 0, "y": 0, "w": 520, "h": 700 },
+    { "file": "Object.dc.html", "title": "The object", "x": 0, "y": 0, "w": 520, "h": 790 },
     { "file": "ChildConsent.dc.html", "title": "Child · First run", "x": 600, "y": 0, "w": 390, "h": 844 },
     { "file": "Main.dc.html", "title": "Child · Home", "x": 1070, "y": 0, "w": 390, "h": 844 },
     { "file": "ChildSend.dc.html", "title": "Child · Send control", "x": 1540, "y": 0, "w": 390, "h": 844 },
