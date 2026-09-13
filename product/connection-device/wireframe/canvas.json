@@ -1,0 +1,43 @@
+{
+  "artboards": [
+    { "file": "Object.dc.html", "title": "The object", "x": 0, "y": 0, "w": 520, "h": 700 },
+    { "file": "ChildConsent.dc.html", "title": "Child · First run", "x": 600, "y": 0, "w": 390, "h": 844 },
+    { "file": "Main.dc.html", "title": "Child · Home", "x": 1070, "y": 0, "w": 390, "h": 844 },
+    { "file": "ChildSend.dc.html", "title": "Child · Send control", "x": 1540, "y": 0, "w": 390, "h": 844 },
+    { "file": "ChildTopics.dc.html", "title": "Child · The veto", "x": 2010, "y": 0, "w": 390, "h": 844 },
+    { "file": "ParentTonight.dc.html", "title": "Parent · Tonight", "x": 0, "y": 1060, "w": 390, "h": 844 },
+    { "file": "ParentLimits.dc.html", "title": "Parent · The limits", "x": 470, "y": 1060, "w": 390, "h": 844 },
+    { "file": "Grandparent.dc.html", "title": "Grandparent", "x": 940, "y": 1060, "w": 390, "h": 844 }
+  ],
+  "annotations": [
+    {
+      "id": "legend",
+      "x": 0,
+      "y": -172,
+      "w": 520,
+      "text": "Reading the wireframe\n\nTeal marks anything the child controls. Red handwriting is a design note, not screen copy. Everything else is structure."
+    },
+    {
+      "id": "flow-child",
+      "x": 600,
+      "y": -172,
+      "w": 800,
+      "text": "THE CHILD'S SIDE — left to right, the order a child meets it.\n\nThe channel only opens when they hold the button, and every screen after that is a decision they make: who hears it, whether to send it at all, what gets passed on tonight."
+    },
+    {
+      "id": "flow-adult",
+      "x": 0,
+      "y": 916,
+      "w": 800,
+      "text": "WHAT THE ADULTS RECEIVE — deliberately less than they want.\n\nTwo sentences, one voice note, and a page stating the limits. Gran gets her own inbox rather than a view of anyone else's."
+    },
+    {
+      "id": "open-q",
+      "x": 1420,
+      "y": 1060,
+      "w": 420,
+      "text": "OPEN, NOT DRAWN\n\n· What the child sees when a parent never replies — the failure mode that matters most and has no screen yet.\n\n· Whether topic extraction runs on the voluntary note only. If so there is no ambient mic anywhere in the product, and the COPPA question in the brief mostly dissolves."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}
